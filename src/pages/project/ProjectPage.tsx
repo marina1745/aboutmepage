@@ -7,11 +7,15 @@ export default function ProjectPage() {
     const { slug } = useParams<{ slug: string }>();
     const project = projects.find(p => p.slug === slug);
     
+    const backType = useMemo(
+        () => (sessionStorage.getItem("archiveType") as "game" | "non-game") ?? "non-game",
+        []
+    );
     const cameFrom = useMemo(
         () => (sessionStorage.getItem("from") as "home" | "archive") ?? "archive",
         []
     );
-    const backHref = cameFrom === "home" ? "/" : "/archive?type=${backType}";
+    const backHref = cameFrom === "home" ? "/" : `/archive?type=${backType}`;
     const backLabel = cameFrom === "home" ? "← Back to Home" : "← Back to Archive";
    
     if (!project) {
@@ -61,7 +65,7 @@ export default function ProjectPage() {
                     <h2 className="text-xl font-semibold text-zinc-100">Gallery</h2>
                     <div
                         className={`grid gap-4 ${project.media.length === 1
-                                ? "grid-cols-1"
+                                ? "grid-cols-3"
                                 : project.media.length === 2
                                     ? "grid-cols-1 sm:grid-cols-2"
                                     : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
