@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <div className="min-h-screen bg-[#0E0E10] text-zinc-200 antialiased">

@@ -1,6 +1,6 @@
 ﻿// src/pages/project/ProjectPage.tsx
 import { useParams, Link } from "react-router-dom";
-import { useMemo, useEffect } from "react";
+import { useMemo} from "react";
 import { projects } from "../../lib/projects";
 
 export default function ProjectPage() {
@@ -75,7 +75,7 @@ export default function ProjectPage() {
                                 key={i}
                                 className="rounded-2xl overflow-hidden ring-1 ring-zinc-800 bg-zinc-900/40"
                             >
-                                {m.type === "youtube" ? (
+                                {/*m.type === "youtube" ? (
                                     <div className="aspect-video w-full rounded-2xl overflow-hidden ring-1 ring-zinc-800">
                                         <iframe
                                             src={`https://www.youtube.com/embed/${m.id}`}
@@ -86,7 +86,8 @@ export default function ProjectPage() {
                                             className="w-full h-full"
                                         />
                                     </div>
-                                ) : m.type === "image" ? (
+                                ) :*/
+                                    m.type === "image" ? (
                                     <img src={m.src} alt={m.alt} className="w-full h-full object-cover" />
                                 ) : (
                                     <video src={m.src} controls className="w-full h-full" />

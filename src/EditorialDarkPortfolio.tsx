@@ -1,6 +1,6 @@
 ﻿import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, Github, Linkedin, FileText } from "lucide-react";
+import { ArrowUpRight, Mail, Github, Linkedin } from "lucide-react";
 
 import AestheticCarousel from "./components/AestheticCarousel";
 import { useLocation, Link } from "react-router-dom";
@@ -133,11 +133,10 @@ function Hero() {
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
             <AestheticCarousel
                 images={pics}
-                aspect={36 / 9}                     // wider vs height; try 32/9 or 28/9 if too short
-                peek={110}                        // show more/less of side images
+                aspect={36 / 9}                     // wider vs height; try 32/9 or 28/9 if too short                     // show more/less of side images
                 innerPad={14}                     // space between center and peeks
                 tilePct={70}                      // all three are 70% of container width (equal)
-                className="mx-auto max-w-5xl"     // overall size on page (shrink/grow here)
+               
             /></div>
            
          
