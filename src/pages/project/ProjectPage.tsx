@@ -6,10 +6,7 @@ import { projects } from "../../lib/projects";
 export default function ProjectPage() {
     const { slug } = useParams<{ slug: string }>();
     const project = projects.find(p => p.slug === slug);
-    const backType = useMemo(
-        () => (sessionStorage.getItem("archiveType") as "game" | "non-game") ?? "game",
-        []
-    );
+    
     const cameFrom = useMemo(
         () => (sessionStorage.getItem("from") as "home" | "archive") ?? "archive",
         []

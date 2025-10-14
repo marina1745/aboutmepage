@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { PanInfo } from "framer-motion";
+
+
 
 /** Cross-fade slide variants — incoming stack is rendered above outgoing */
 const slideVariants = {
@@ -49,8 +52,7 @@ export default function AestheticCarousel({
     const [dir, setDir] = useState<1 | -1>(1);
     const [animating, setAnimating] = useState(false);
 
-    if (!images || images.length === 0) return null;
-    const at = (i: number) => images[(i + images.length) % images.length];
+   
 
     // --- sizing / positions ---
     const paddingTop = `${(1 / aspect) * 100}%`; // fix the band’s height by ratio
@@ -82,6 +84,15 @@ export default function AestheticCarousel({
             next();
         }
     };
+    const dragProps = {
+        drag: "x" as const,
+        dragElastic: 0.12,
+        dragConstraints: { left: 0, right: 0 },
+        onDragEnd: (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+            if (info.offset.x < -50) safeNext();
+            else if (info.offset.x > 50) safePrev();
+        },
+    };
 
     // keyboard
     useEffect(() => {
@@ -93,17 +104,9 @@ export default function AestheticCarousel({
         return () => window.removeEventListener("keydown", onKey);
     }, [animating, images.length]);
 
-    // drag/swipe
-    const dragProps = {
-        drag: "x" as const,
-        dragElastic: 0.12,
-        dragConstraints: { left: 0, right: 0 },
-        onDragEnd: (_: any, info: { offset: { x: number } }) => {
-            if (info.offset.x < -50) safeNext();
-            else if (info.offset.x > 50) safePrev();
-        },
-    };
-
+    
+    if (!images || images.length === 0) return null;
+    const at = (i: number) => images[(i + images.length) % images.length];
     return (
         <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden bg-white/[0.02] border-y border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
             {/* Aspect box controls height */}

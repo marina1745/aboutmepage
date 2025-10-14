@@ -198,7 +198,7 @@ function Work() {
     );
 }
 
-function BandQuote() {
+/*function BandQuote() {
     return (
         <div className="relative">
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.06)_0%,transparent_30%,transparent_70%,rgba(255,255,255,0.06)_100%)]" />
@@ -210,6 +210,7 @@ function BandQuote() {
         </div>
     );
 }
+*/
 
 function Writing() {
     const posts = [
