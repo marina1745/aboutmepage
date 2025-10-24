@@ -260,15 +260,23 @@ function About() {
     return (
         <section id="about" className="border-t border-white/10">
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 py-20 md:grid-cols-12">
-                <div className="md:col-span-6">
-                    <h2 className="font-serif text-4xl md:text-5xl">About</h2>
-                    <p className="mt-6 max-w-prose text-zinc-300 md:text-lg">
-                        I’m an engineer working across XR, real-time rendering, and data systems. My background combines computer graphics, databases, and low-level programming in C/C++, enabling me to build efficient and scalable systems. I develop both research and game projects focused on game engine technology and computational visualization.
-                    </p>
-                    <p className="mt-4 max-w-prose text-zinc-400">
-                        I like understanding how things work—whether it’s code, systems, or people. I care about clarity and building things that make sense. Currently based in Munich.
-                    </p>
-                </div>
+  <div className="md:col-span-6">
+    <h2 className="font-serif text-4xl md:text-5xl">About</h2>
+    <p className="mt-6 max-w-prose text-zinc-300 md:text-lg">
+      I’m an engineer working across XR, real-time rendering, and data systems. My background combines computer graphics, databases, and low-level programming in C/C++, enabling me to build efficient and scalable systems. I develop both research and game projects focused on game engine technology and computational visualization.
+    </p>
+    <p className="mt-4 max-w-prose text-zinc-400">
+      I like understanding how things work—whether it’s code, systems, or people. I care about clarity and building things that make sense. Currently based in Munich.
+    </p>
+    <Link
+      to="/personal"
+      className="mt-8 inline-flex rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 hover:border-white/40"
+    >
+      Meet me
+    </Link>
+  
+</div>
+
 
                 <div className="md:col-span-6 md:pl-8">
                     <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
@@ -300,7 +308,9 @@ function About() {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                
             </div>
         </section>
     );
