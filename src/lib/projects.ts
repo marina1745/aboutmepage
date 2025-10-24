@@ -215,20 +215,34 @@ export const projects: Project[] = [
 },
 
   {
-    slug: "privacy",
-    title: "Privacy VR Project",
-    summary: "Experiment that showcases privacy concerns with VR",
-    tags: ["Unity", "SteamVR", "Varjo", "Apple Vision", "Eye Tracking", "Ready Player Me", "Python"],
-    category: "non-game",
-    body: "In this experiment, we created rooms in which participants are asked to complete simple tasks in "+
-	"a VR environment. While doing so, we tracked their eye data (eye movement, fixation, saccades,... )"+
-	" and proved that we can confidently predict private information (age, BMI, gender, ethnicity, ...) based on "+
-	"eye tracking data alone.",
-   media: [
-   { type: "image", src: "/projectmedia/ageroom (1).png" },
-   { type: "image", src: "/projectmedia/ethnicityroom (1).png" }
-    ],
-  },
+  slug: "privacy_vr",
+  title: "Privacy VR Project",
+  summary: "VR experiment revealing how eye tracking data can expose personal information",
+  tags: ["Unity", "Varjo XR-3", "SteamVR", "Ready Player Me", "OpenAI API", "AWS Polly", "Python", "Eye Tracking"],
+  category: "non-game",
+  body:
+    "Privacy VR is a research-focused virtual reality experiment developed at the Technical University of Munich. " +
+    "The goal was to investigate whether sensitive personal information—such as age, gender, ethnicity, or body weight—can be inferred from eye tracking data alone. " +
+    "We built a Unity-based XR application featuring several interactive task rooms, each designed to elicit distinct gaze and behavioral patterns while participants performed simple tasks in VR.\n\n" +
+    "Sixty-nine participants completed the study using the Varjo XR-3 headset with integrated 200 Hz eye tracking. " +
+    "Each room targeted a specific attribute: a gender-based object ranking task, an age-based memory reconstruction task, an ethnicity-based NPC interaction scene, and a food preference task related to BMI. " +
+    "Statistical analysis confirmed measurable correlations between gaze behavior and personal attributes, demonstrating the privacy risks of future XR systems.\n\n" +
+    "The experiment also integrated AI-driven NPCs powered by the OpenAI API, Amazon Polly for speech synthesis, and Ready Player Me avatars for realistic diversity. " +
+    "Python scripts were used for data analysis (Mann–Whitney U tests, regression models, and visualization). " +
+    "This project highlights both the scientific potential and the privacy challenges of eye tracking in modern immersive environments.",
+  links: [
+    { label: "📄 Report", href: "https://marinaweber.me/privacyReport.pdf" }
+  ],
+  media: [
+    { type: "image", src: "/projectmedia/ageroom (1).png" },
+    { type: "image", src: "/projectmedia/ethnicityroom (1).png" },
+    { type: "image", src: "/projectmedia/genderroom.png" },
+    { type: "image", src: "/projectmedia/robot.png" },
+    { type: "image", src: "/projectmedia/weightroom.png" },
+    { type: "image", src: "/projectmedia/tutorialroom.png" }
+  ]
+}
+
 {
   slug: "bachelor_thesis_integrity_space",
   title: "A Functional Gamespace Model – Hierarchical Graphs and Spatial Partitioning Based on the Integrity of Space",
