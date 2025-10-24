@@ -96,7 +96,7 @@ export default function ArchivePage() {
                 {/* Footer section */}
                 <div className="mt-12 text-center border-t border-zinc-800 pt-8">
                     <img
-                        src="projectmedia/kaindorf.PNG"
+                        src="marina2D/MarinaComm2.png"
                         alt="Archive footer illustration"
                         className="mx-auto mb-4 max-w-xs rounded-xl opacity-90"
                     />

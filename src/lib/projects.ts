@@ -16,6 +16,7 @@ export interface Project {
   tags?: string[];
   body?: string;        // simple rich text (markdown-ish is fine)
   media?: MediaItem[];  // images & videos
+  github?: string;
 }
 
 export const projects: Project[] = [
@@ -38,6 +39,7 @@ export const projects: Project[] = [
 	 
 		  
     ],
+    github: "https://ww.google.com",
   },
   {
     slug: "sneaky_sneaky",
