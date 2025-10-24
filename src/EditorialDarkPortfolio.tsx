@@ -266,7 +266,7 @@ function About() {
       I’m an engineer working across XR, real-time rendering, and data systems. My background combines computer graphics, databases, and low-level programming in C/C++, enabling me to build efficient and scalable systems. I develop both research and game projects focused on game engine technology and computational visualization.
     </p>
     <p className="mt-4 max-w-prose text-zinc-400">
-      I like understanding how things work—whether it’s code, systems, or people. I care about clarity and building things that make sense. Currently based in Munich.
+      I like understanding how things work—whether it’s code, systems, or people. I care about clarity and building things that make sense. Currently based in Munich. Studying Computer Science at Technical University of Munich (TUM).
     </p>
     <Link
       to="/personal"
