@@ -241,7 +241,7 @@ export const projects: Project[] = [
     { type: "image", src: "/projectmedia/weightroom.png" },
     { type: "image", src: "/projectmedia/tutorialroom.png" }
   ]
-}
+},
 
 {
   slug: "bachelor_thesis_integrity_space",

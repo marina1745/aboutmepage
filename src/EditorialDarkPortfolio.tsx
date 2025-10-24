@@ -147,7 +147,7 @@ function Hero() {
 
 function Work() {
     const chosen = [
-        "privacy", "campus_wars", "sneaky_sneaky"
+        "privacy_vr", "campus_wars", "sneaky_sneaky"
     ];
     const filtered = projects.filter(p => chosen.includes(p.slug));
 
