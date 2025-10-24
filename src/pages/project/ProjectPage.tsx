@@ -86,6 +86,25 @@ export default function ProjectPage() {
         )}
 
 
+
+{project.links && project.links.length > 0 && (
+  <div className="mt-3 flex flex-wrap gap-3">
+    {project.links.map(l => (
+      <a
+        key={l.href}
+        href={l.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="rounded-xl border border-white/20 px-3 py-1 text-sm hover:bg-white/10"
+      >
+        {l.label}
+      </a>
+    ))}
+  </div>
+)}
+
+
+
             {/* Media Gallery */}
             
             {project.media && project.media.length > 0 && (

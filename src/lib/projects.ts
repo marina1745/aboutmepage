@@ -17,6 +17,11 @@ export interface Project {
   body?: string;        // simple rich text (markdown-ish is fine)
   media?: MediaItem[];  // images & videos
   github?: string;
+  links?: ProjectLink[];
+}
+export interface ProjectLink {
+  label: string;
+  href: string;
 }
 
 export const projects: Project[] = [
@@ -114,25 +119,30 @@ export const projects: Project[] = [
   github: "https://github.com/marina1745/ReactDebateTrainer",
 },
 
-  {
-    slug: "Escape_ancient_china",
-    title: "Escape Ancient China VR",
-    summary: "VR Escape Room",
-    tags: ["Unity", "C#", "Varjo", "SteamVR", "OpenAI API"],
-    category: "game",
-    body:
-      "You are teleported into ancient China, where evil men hold you hostage. Try to escape before they return!"+
-	  "\n In this game, you have to escape three rooms, each representing a different time period and dynasty of Ancient China. Use your knowledge "+
-	  "about Chinese history to escape!\n"+
-	  "In this game, there are talking portraits who assist the player in case they are stuck. Their answers are generated using OpenAI API and their lip movement and eyes are synced to the speech using the D-iD API.",
-    media: [
-     
-     { type: "image", src: "/projectmedia/china (1).png" },
-	 { type: "image", src: "/projectmedia/china (4).png" },
-	 { type: "image", src: "/projectmedia/china (3).png" },
-	 { type: "image", src: "/projectmedia/china (2).png" },
-    ],
-  },
+ {
+  slug: "escape_ancient_china",
+  title: "Escape Ancient China VR",
+  summary: "Educational VR escape room teaching Chinese history",
+  tags: ["Unity", "C#", "Varjo XR-3", "SteamVR", "OpenAI API", "D-ID API"],
+  category: "game",
+  body:
+    "Escape Ancient China VR is a serious game developed in Unity for the Varjo XR-3 headset. The player, a university student who accidentally time-travels to ancient China, must escape three rooms representing different dynasties—the Qin, Han, and Tang periods—by solving historically themed puzzles.\n\n" +
+    "Each room introduces key cultural and technological milestones, such as traditional weapons, papermaking, or the imperial government system. Puzzles are designed to teach history implicitly through gameplay, aligning with the serious games principle of 'learning through play.'\n\n" +
+    "To assist players, the game features interactive AI-driven 'talking portraits' of historical emperors. Their dialogues are dynamically generated using the OpenAI API and lip-synced via the D-ID API, creating lifelike responses and deepening immersion.\n\n" +
+    "I was responsible for the overall environment design, puzzle and gameplay implementation, interaction system, animation flow, API integration, and Varjo VR setup. The project was part of the Serious Games in Extended Reality course at the Technical University of Munich.",
+  links: [
+    { label: "📄 Report", href: "https://marinaweber.me/reportAncientChina.pdf" },
+    { label: "🎥 Presentation", href: "https://marinaweber.me/presentationAncientChina.pdf" }
+  ],
+  media: [
+    { type: "image", src: "/projectmedia/china (1).png" },
+    { type: "image", src: "/projectmedia/china (4).png" },
+    { type: "image", src: "/projectmedia/china (3).png" },
+    { type: "image", src: "/projectmedia/china (2).png" },
+    { type: "image", src: "/projectmedia/portal.png" }
+  ]
+},
+
 {
   slug: "kaindorf_story",
   title: "Just Another Kaindorf Story",
