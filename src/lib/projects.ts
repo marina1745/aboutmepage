@@ -216,12 +216,12 @@ export const projects: Project[] = [
 
   {
   slug: "privacy_vr",
-  title: "Privacy VR Project",
+  title: "Exploring the Impact of LLM-Powered Virtual Spaces on Privacy",
   summary: "VR experiment revealing how eye tracking data can expose personal information",
   tags: ["Unity", "Varjo XR-3", "SteamVR", "Ready Player Me", "OpenAI API", "AWS Polly", "Python", "Eye Tracking"],
   category: "non-game",
   body:
-    "Privacy VR is a research-focused virtual reality experiment developed at the Technical University of Munich. " +
+    "This project is part of a research-focused virtual reality experiment developed at the Technical University of Munich. " +
     "The goal was to investigate whether sensitive personal information—such as age, gender, ethnicity, or body weight—can be inferred from eye tracking data alone. " +
     "We built a Unity-based XR application featuring several interactive task rooms, each designed to elicit distinct gaze and behavioral patterns while participants performed simple tasks in VR.\n\n" +
     "Sixty-nine participants completed the study using the Varjo XR-3 headset with integrated 200 Hz eye tracking. " +
