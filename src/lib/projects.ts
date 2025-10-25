@@ -105,24 +105,7 @@ export const projects: Project[] = [
   github: "https://github.com/starflowered/Kingdom_Of_Colors",
 },
 
-{
-  slug: "react_debate_trainer",
-  title: "React Debate Trainer",
-  summary: "Interactive web app demonstrating OpenAI API integration for debate practice",
-  tags: ["React", "TypeScript", "OpenAI API", "Node.js", "Express"],
-  category: "non-game",
-  body:
-    "React Debate Trainer is a full-stack web application built as an exercise to integrate the OpenAI API into a custom React app. " +
-    "It allows users to generate and structure debate topics, receive AI-generated counterarguments, and simulate interactive discussion rounds. " +
-    "The frontend was developed with React and TypeScript, focusing on a clean and responsive user interface, while the backend was implemented using Node.js and Express to handle API communication and data flow. " +
-    "This project served as a prototype for experimenting with large language model interaction patterns and prompt design within a web-based educational tool. "+
-    "Also, the website is available in German, English and Mandarin Chinese.",
-  media: [
-    { type: "image", src: "/projectmedia/debate.png" },
-    // add demo or screenshot if available, e.g. { type: "image", src: "/projectmedia/debatetrainer.png" },
-  ],
-  github: "https://github.com/marina1745/ReactDebateTrainer",
-},
+
 
  {
   slug: "escape_ancient_china",
@@ -332,4 +315,22 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/marina1745/geburtstagsparadoxon",
   },
+  {
+  slug: "react_debate_trainer",
+  title: "React Debate Trainer",
+  summary: "Interactive web app demonstrating OpenAI API integration for debate practice",
+  tags: ["React", "TypeScript", "OpenAI API", "Node.js", "Express"],
+  category: "non-game",
+  body:
+    "React Debate Trainer is a full-stack web application built as an exercise to integrate the OpenAI API into a custom React app. " +
+    "It allows users to generate and structure debate topics, receive AI-generated counterarguments, and simulate interactive discussion rounds. " +
+    "The frontend was developed with React and TypeScript, focusing on a clean and responsive user interface, while the backend was implemented using Node.js and Express to handle API communication and data flow. " +
+    "This project served as a prototype for experimenting with large language model interaction patterns and prompt design within a web-based educational tool. "+
+    "Also, the website is available in German, English and Mandarin Chinese.",
+  media: [
+    { type: "image", src: "/projectmedia/debate.png" },
+    // add demo or screenshot if available, e.g. { type: "image", src: "/projectmedia/debatetrainer.png" },
+  ],
+  github: "https://github.com/marina1745/ReactDebateTrainer",
+},
 ];
