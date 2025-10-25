@@ -51,43 +51,45 @@ export const projects: Project[] = [
 
   },
   {
-    slug: "sneaky_sneaky",
-    title: "Sneaky Sneaky",
-    summary: "Puzzle, Foley, 3D",
-    tags: ["Unity", "C#", "Audio"],
-    category: "game",
-    body:
-	"In sneaky sneaky, you play a tiny mouse trying to steal cheese from a restaurant kitchen. If a chef catches you, it is game over. "+
-	"The different kitchen equipment makes noise. If the chef notices unusual sounds, they will check where it came from. Use this to your advantage!"
-	+"\nThe entire audio in this game was created by ourselves."
-      ,
-    media: [
-     
-      { type: "image", src: "/projectmedia/sneaky1.png" },
-	  { type: "video", src: "/projectmedia/SneakyTrailer.mp4" },
-    {type: "video", src: "projectmedia/sneakyGameplay.mp4"},
-		  
-    ],
-  },
+  slug: "sneaky_sneaky",
+  title: "Sneaky Sneaky",
+  summary: "3D stealth puzzle game where sound is your greatest weapon",
+  tags: ["Unity", "C#", "Audio Design"],
+  category: "game",
+  body:
+    "In *Sneaky Sneaky*, you’re a mischievous little mouse on a daring mission: steal the cheese without getting caught! " +
+    "The restaurant kitchen is bustling with noisy pots, sizzling pans, and grumpy chefs who won’t hesitate to chase you down if they hear something suspicious.\n\n" +
+    "Use sound to your advantage: knock over utensils, make a little noise, and lure the chefs away from your path while you sneak closer to the prize. " +
+    "But be careful! Too much noise and you’ll end up as tomorrow’s menu!\n\n" +
+    "Part of the foley sounds were recorded and edited by ourselves. ",
+  media: [
+    { type: "image", src: "/projectmedia/sneaky1.png" },
+    { type: "video", src: "/projectmedia/SneakyTrailer.mp4" },
+    { type: "video", src: "/projectmedia/sneakyGameplay.mp4" },
+    { type: "video", src: "/projectmedia/sneakyGameplay2.mp4"}
+  ],
+  github: "https://github.com/marina1745/SneakySneaky",
+},
+
   {
-    slug: "Tempora_Facta_Casa",
-    title: "Tempora Facta Casa",
-    summary: "Serious game, architecture, wood, 3D",
-    tags: ["Unity", "C#", "Blender"],
-    category: "game",
-    body:
-      "This project was a collaboration with students from the architecture department. " +
-      "The goal was to showcase the beauty of wood and its natural decay. In architecture, wood is a renewable resource since it grows and it can easily be disposed. "
-	  +"This makes it an attractive material. \n"+
-	  "The gameplay is rather simple: Inspect the buildings, find hidden notes to learn more, and manipulate time to view how wood changes over the years depending on different weather conditions."+
-	  "\n\n In this game, we created custom models of the houses, custom textures and custom shaders to properly showcase the beauty of wood aging.",
-    media: [
-     { type: "image", src: "/projectmedia/tempora1.jpg" },
-	 { type: "image", src: "/projectmedia/tempora2.png" },
-	 { type: "image", src: "/projectmedia/tempora3.png" },
-     { type: "video", src: "/projectmedia/temporaTrailer.mp4" },
-    ],
-  },
+  slug: "tempora_facta_casa",
+  title: "Tempora Facta Casa",
+  summary: "Serious 3D exploration game about architecture and the beauty of wood’s decay",
+  tags: ["Unity", "C#", "Blender"],
+  category: "game",
+  body:
+    "*Tempora Facta Casa* is a collaborative project with architecture students, created to explore the poetic side of architecture — and the quiet beauty of wood as it changes over time.\n\n" +
+    "In the game, you wander through wooden structures, uncover hidden notes, and manipulate time to observe how weather and decay gradually transform the material. " +
+    "It’s a contemplative experience that blurs the line between game and exhibition piece, highlighting wood as both a renewable and ephemeral building material.\n\n" +
+    "All house models, textures, and shaders were custom-made to authentically capture the look and feel of wood aging across the years.",
+  media: [
+    { type: "image", src: "/projectmedia/tempora1.jpg" },
+    { type: "image", src: "/projectmedia/tempora2.png" },
+    { type: "image", src: "/projectmedia/tempora3.png" },
+    { type: "video", src: "/projectmedia/temporaTrailer.mp4" },
+  ],
+},
+
   {
   slug: "kingdom_of_colors",
   title: "Kingdom of Colors",
