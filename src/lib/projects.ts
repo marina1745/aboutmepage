@@ -258,7 +258,7 @@ export const projects: Project[] = [
     "My main responsibilities included project management, data collection on illnesses, and the development of the self-diagnosis algorithm. " +
     "This project strengthened my understanding of object-oriented design, database systems, and real-world software deployment within a medical context.",
   links: [
-    { label: "📄 Full Thesis (PDF)", href: "/projectmedia/patienteninformationssystem.pdf" }
+    { label: "📄 Full Thesis (PDF)", href: "/patienteninformationssystem.pdf" }
   ],
   
 },
