@@ -135,6 +135,12 @@ export default function ProjectPage() {
                                         />
                                     </div>
                                 ) :*/
+                                  m.type === "audio" ? (
+            <audio
+              src={m.src}
+              controls
+              className="w-full"
+            />) :
                                     m.type === "image" ? (
                                     <img src={m.src} alt={m.alt} className="w-full h-full object-cover" />
                                 ) : (

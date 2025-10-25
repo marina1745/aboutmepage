@@ -2,7 +2,7 @@
 export type ProjectCategory = "game" | "non-game";
 
 export interface MediaItem {
-  type: "image" | "video" | "youtube";
+  type: "image" | "video" | "youtube" |"audio";
   src: string;          // e.g. "/media/privacy-vr/shot1.jpg"
   alt?: string;
   caption?: string;
@@ -213,6 +213,20 @@ export const projects: Project[] = [
   ],
   github: "https://github.com/marina1745/tinydb_impl",
 },
+{
+  slug: "game_music_composition",
+  title: "Game Music Composition",
+  summary: "Original background music composed as an experiment in creating immersive in-game atmosphere",
+  tags: ["Audio Design", "Music Composition", "Digital Audio Workstation", "Sound Design"],
+  category: "non-game",
+  body:
+    "This piece represents my first attempt at creating original background music for games. " +
+    "I wanted to explore how melody, harmony, and rhythm can shape the emotional tone of a gameplay scene. ", 
+  media: [
+    { type: "audio", src: "/projectmedia/Composing_final.mp3" }
+  ],
+},
+
 
   {
   slug: "privacy_vr",
