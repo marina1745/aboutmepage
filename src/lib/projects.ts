@@ -242,6 +242,27 @@ export const projects: Project[] = [
     { type: "image", src: "/projectmedia/tutorialroom.png" }
   ]
 },
+{
+  slug: "patient_information_system",
+  title: "Patient Information System",
+  summary: "Desktop application that helps patients estimate the severity of their health problems",
+  tags: ["C#", "WPF", "SQL", "Google Maps API", "Azure DevOps", "Git", "BORA Framework"],
+  category: "non-game",
+  body:
+    "The 'Patient Information System' was developed as part of my diploma thesis at the Higher Technical College of Kaindorf in collaboration with BOOM Software AG. " +
+    "The project aimed to create a prototype that enables users to perform a self-assessment of their symptoms and receive recommendations for the most suitable type of doctor. " +
+    "By answering a series of guided questions, patients receive a preliminary diagnosis and a list of nearby specialists capable of treating their condition.\n\n" +
+    "The system was implemented using the BORA enterprise framework, C#, and WPF for the user interface, with Microsoft SQL Server for persistent data storage. " +
+    "It integrates Google Maps for navigation, allowing patients to view the fastest route to the selected doctor. " +
+    "The application also supports doctor-side functionality: doctors can be notified about incoming patients and access symptom data before their arrival, helping to reduce examination time.\n\n" +
+    "My main responsibilities included project management, data collection on illnesses, and the development of the self-diagnosis algorithm. " +
+    "This project strengthened my understanding of object-oriented design, database systems, and real-world software deployment within a medical context.",
+  links: [
+    { label: "📄 Full Thesis (PDF)", href: "/projectmedia/patienteninformationssystem.pdf" }
+  ],
+  
+},
+
 
 {
   slug: "bachelor_thesis_integrity_space",
