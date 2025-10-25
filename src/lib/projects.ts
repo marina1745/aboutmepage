@@ -44,6 +44,9 @@ export const projects: Project[] = [
     { type: "image", src: "/projectmedia/campuswars3.png" },
   ],
   github: "https://github.com/marina1745/campus_wars",
+  links: [
+    {label: "▶️ Youtube", href: "https://www.youtube.com/watch?v=V3tVxyCp6qk&t=1s"}
+  ]
 
 
   },
@@ -62,6 +65,7 @@ export const projects: Project[] = [
      
       { type: "image", src: "/projectmedia/sneaky1.png" },
 	  { type: "video", src: "/projectmedia/SneakyTrailer.mp4" },
+    {type: "video", src: "projectmedia/sneakyGameplay.mp4"},
 		  
     ],
   },
@@ -75,7 +79,8 @@ export const projects: Project[] = [
       "This project was a collaboration with students from the architecture department. " +
       "The goal was to showcase the beauty of wood and its natural decay. In architecture, wood is a renewable resource since it grows and it can easily be disposed. "
 	  +"This makes it an attractive material. \n"+
-	  "The gameplay is rather simple: Inspect the buildings, find hidden notes to learn more, and manipulate time to view how wood changes over the years depending on different weather conditions.",
+	  "The gameplay is rather simple: Inspect the buildings, find hidden notes to learn more, and manipulate time to view how wood changes over the years depending on different weather conditions."+
+	  "\n\n In this game, we created custom models of the houses, custom textures and custom shaders to properly showcase the beauty of wood aging.",
     media: [
      { type: "image", src: "/projectmedia/tempora1.jpg" },
 	 { type: "image", src: "/projectmedia/tempora2.png" },
@@ -325,5 +330,6 @@ export const projects: Project[] = [
    { type: "image", src: "/projectmedia/analysis2.png" },
  
     ],
+    github: "https://github.com/marina1745/geburtstagsparadoxon",
   },
 ];
