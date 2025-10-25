@@ -141,7 +141,7 @@ export const projects: Project[] = [
   category: "game",
   body:
     "\"Just Another Kaindorf Story\" is one of my first game projects — a 2D puzzle adventure entirely developed in Unity, featuring hand-drawn pixel art created by myself. " +
-    "The game follows a mysterious storyline set in a seemingly ordinary school, where your friends suddenly vanish and unsettling noises echo from the basement. " +
+    "The game follows a mysterious storyline set in the HTBLA Kaindorf, where your friends suddenly vanish and unsettling noises echo from the basement. " +
     "As you search for them, you must avoid the principal, who randomly appears and keeps a watchful eye on disobedient students. " +
     "The project focused on level design and building atmosphere through minimalist visuals and sound.",
   media: [
