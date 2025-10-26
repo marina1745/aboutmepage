@@ -235,7 +235,8 @@ export const projects: Project[] = [
     "Python scripts were used for data analysis (Mann–Whitney U tests, regression models, and visualization). " +
     "This project highlights both the scientific potential and the privacy challenges of eye tracking in modern immersive environments.",
   links: [
-    { label: "📄 Report", href: "https://marinaweber.me/privacyReport.pdf" }
+    { label: "📄 Report", href: "https://marinaweber.me/privacyReport.pdf" },
+    {label: "📈 Analysis Scripts", href: "https://github.com/marina1745/idp_analysis_scripts/tree/master"}
   ],
   media: [
     { type: "image", src: "/projectmedia/ageroom (1).png" },
@@ -335,4 +336,22 @@ export const projects: Project[] = [
   ],
   github: "https://github.com/marina1745/ReactDebateTrainer",
 },
-];
+{
+  "slug": "rts_demo_unreal",
+  "title": "RTS Demo in Unreal",
+  "summary": "Small prototype built to explore real-time strategy mechanics in Unreal Engine",
+  "tags": ["C++", "Unreal Engine", "HUD", "Terrain Creation", "RTS Mechanics"],
+  "category": "game",
+  "body":
+    "RTS Demo in Unreal is a small real-time strategy prototype I created to get hands-on experience with Unreal Engine’s gameplay framework and C++ workflow. " +
+    "The project includes core RTS features such as selecting and commanding units, placing buildings, and managing player input through a custom heads-up display. " +
+    "I also experimented with terrain sculpting and material painting to create an interactive environment suitable for base building and navigation. " +
+    "This project served as a personal sandbox to better understand how RTS systems can be structured in Unreal — from input handling and unit control to camera movement and actor communication.",
+  "media": [
+    { "type": "image", "src": "/projectmedia/rts_demo_1.png" },
+    { "type": "image", "src": "/projectmedia/rts_demo_2.png" }
+  ]
+}
+,
+
+]
