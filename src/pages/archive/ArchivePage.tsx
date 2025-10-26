@@ -101,7 +101,7 @@ export default function ArchivePage() {
                         className="mx-auto mb-4 max-w-xs rounded-xl opacity-90"
                     />
                     <p className="text-sm text-zinc-400 italic">
-                        This list is not exhaustive and will be updated.
+                        The archive is under construction and will be updated.
                     </p>
                 </div>
             </div>
