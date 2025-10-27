@@ -348,8 +348,8 @@ export const projects: Project[] = [
     "I also experimented with terrain sculpting and material painting to create an interactive environment suitable for base building and navigation. " +
     "This project served as a personal sandbox to better understand how RTS systems can be structured in Unreal — from input handling and unit control to camera movement and actor communication.",
   "media": [
-    { "type": "image", "src": "/projectmedia/rts_demo_1.png" },
-    { "type": "image", "src": "/projectmedia/rts_demo_2.png" }
+    { "type": "image", "src": "/projectmedia/rts1.png" },
+    
   ]
 }
 ,
