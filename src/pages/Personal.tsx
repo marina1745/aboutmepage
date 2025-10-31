@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Personal() {
     return (
@@ -31,6 +32,13 @@ export default function Personal() {
                             Along the way, I moved often, met people from every kind of background, and learned as much about myself as I did about others.
                             Change became my constant, curiosity my rhythm.
 And ever since the day a four-year-old me first obsessed over Pokemon Stadium 2, technology has stayed the quiet thread running through it all.</p>
+<Link 
+    to="/journey" 
+    className="mt-4 inline-block text-zinc-400 hover:text-zinc-100 underline underline-offset-4 transition"
+  >
+    Read about my Computer Science journey â†’
+  </Link>
+
                         </motion.div>
 
                         <motion.aside
@@ -92,7 +100,7 @@ And ever since the day a four-year-old me first obsessed over Pokemon Stadium 2,
                         ].map((i) => (
                             // Each row: relative so the dot can anchor to it; padding makes gutter
                             <div key={i.year} className="relative pl-12 py-3">
-                                {/* DOT — centered on the line and vertically centered in the row */}
+                                {/* DOT ï¿½ centered on the line and vertically centered in the row */}
                                 <span className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 h-2.5 w-2.5 rounded-full bg-zinc-300" />
 
                                 {/* TEXT */}

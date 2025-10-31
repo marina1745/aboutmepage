@@ -255,7 +255,7 @@ function Writing() {
 function About() {
     const skills = [
         "React", "TypeScript", "Unity", "C#", "Varjo XR", "OpenXR", "OpenCV", "SQL", "DirectX","C/C++","Java",
-        "Python", "Pandas", "GLSL","Vulkan", "SpringBoot", "Unreal" ,
+        "Python", "Pandas", "NumPy", "TensorFlow", "GLSL","Vulkan", "SpringBoot", "Unreal", "CUDA" , "3ds Max",
     ];
     return (
         <section id="about" className="border-t border-white/10">

@@ -7,6 +7,7 @@ import Impressum from "./pages/Impressum";
 import Privacy from "./pages/Privacy";
 import Layout from "./Layout";
 import Personal from "./pages/Personal";
+import Journey from "./pages/Journey";
 import ArchivePage from "./pages/archive/ArchivePage";
 import "./index.css";
 import ScrollToTop from "./components/ScrollToTop";
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
                 <Route path="/personal" element={<Layout><Personal /></Layout>} />
                 <Route path="/archive" element={<Layout><ArchivePage /></Layout>} />
+                <Route path="/journey" element={<Layout><Journey/></Layout>} />
                 <Route path="/work/:slug" element={<Layout><ProjectPage /></Layout>} />
                 
             </Routes>
