@@ -301,7 +301,9 @@ export const projects: Project[] = [
    { type: "image", src: "/projectmedia/rendergame.png" },
  
     ],
+    github: "https://github.com/marina1745/ged_upload",
   },
+  
   {
     slug: "brithday paradox",
     title: "Birthday Paradox Implementation",
