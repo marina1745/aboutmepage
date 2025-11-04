@@ -112,7 +112,7 @@ export default function ProjectPage() {
                     <h2 className="text-xl font-semibold text-zinc-100">Gallery</h2>
                     <div
                         className={`grid gap-4 ${project.media.length === 1
-                                ? "grid-cols-3"
+                                ? "grid-cols-2"
                                 : project.media.length === 2
                                     ? "grid-cols-1 sm:grid-cols-2"
                                     : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
