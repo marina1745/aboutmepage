@@ -352,7 +352,8 @@ export const projects: Project[] = [
   "media": [
     { "type": "image", "src": "/projectmedia/rts1.png" },
     
-  ]
+  ],
+  "github":"https://github.com/marina1745/RTS_Demo",
 }
 ,
 
