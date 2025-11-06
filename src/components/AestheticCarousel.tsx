@@ -1,180 +1,228 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { PanInfo } from "framer-motion";
 
-
-
-/** Cross-fade slide variants ó incoming stack is rendered above outgoing */
+/** Cross-fade slide variants ‚Äî incoming stack is rendered above outgoing */
 const slideVariants = {
-    enter: (dir: 1 | -1) => ({
-        x: dir === 1 ? 40 : -40,
-        opacity: 0,
-        zIndex: 1,
-    }),
-    center: {
-        x: 0,
-        opacity: 1,
-        zIndex: 1,
-    },
-    exit: (dir: 1 | -1) => ({
-        x: dir === 1 ? -40 : 40,
-        opacity: 0,
-        zIndex: 0,
-    }),
+  enter: (dir: 1 | -1) => ({
+    x: dir === 1 ? 40 : -40,
+    opacity: 0,
+    zIndex: 1,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    zIndex: 1,
+  },
+  exit: (dir: 1 | -1) => ({
+    x: dir === 1 ? -40 : 40,
+    opacity: 0,
+    zIndex: 0,
+  }),
 };
+
+type PictureMeta = {
+  img: { src: string; srcset?: string; w?: number; h?: number };
+  sources: { avif?: string; webp?: string; jpeg?: string };
+};
+type Slide = { meta: PictureMeta; tiny: string; alt: string };
 
 type Props = {
-    images: string[];
-    /** width / height ratio for the whole band (very wide by default) */
-    aspect?: number;     // e.g. 36/9 or 32/9
-    /** each tileís width as % of the container; all three tiles use this equally */
-    tilePct?: number;    // 60ñ72 is the sweet spot; default 65
-    /** pixel gap between the center tile and the side tiles */
-    innerPad?: number;   // a ìcouple of pixelsî look: 8ñ14
+  images: Slide[];
+  /** width / height ratio for the whole band (very wide by default) */
+  aspect?: number;     // e.g. 36/9 or 32/9
+  /** each tile‚Äôs width as % of the container; all three tiles use this equally */
+  tilePct?: number;    // 60‚Äì72 is the sweet spot; default 65
+  /** pixel gap between the center tile and the side tiles */
+  innerPad?: number;   // a ‚Äúcouple of pixels‚Äù look: 8‚Äì14
 };
 
-/**
- * Full-width landscape carousel:
- * - equal-sized tiles (center + left + right)
- * - center fully visible, sides peek in
- * - smooth cross-fade slide
- * - drag/swipe + keyboard + arrows
- * - no ìskipî or overlay/ghost issues
- */
+
+
+
 export default function AestheticCarousel({
-    images,
-    aspect = 36 / 9,
-    tilePct = 65,
-    innerPad = 10,
+  images,
+  aspect = 36 / 9,
+  tilePct = 65,
+  innerPad = 10,
 }: Props) {
-    const [idx, setIdx] = useState(0);
-    const [dir, setDir] = useState<1 | -1>(1);
-    const [animating, setAnimating] = useState(false);
+  const [idx, setIdx] = useState(0);
+  const [dir, setDir] = useState<1 | -1>(1);
+  const [animating, setAnimating] = useState(false);
 
-   
+  const prefersReducedMotion =
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false;
 
-    // --- sizing / positions ---
-    const paddingTop = `${(1 / aspect) * 100}%`; // fix the bandís height by ratio
-    const W = tilePct;                            // tile width (%)
-    const centerWidth = `${W}%`;
+  // --- sizing / positions ---
+  const paddingTop = `${(1 / aspect) * 100}%`; // fix the band‚Äôs height by ratio
+  const W = tilePct;                            // tile width (%)
+  const centerWidth = `${W}%`;
+  const leftLeft = `calc(50% - ${W / 2}% - ${innerPad}px - ${W}%)`;
+  const rightLeft = `calc(50% + ${W / 2}% + ${innerPad}px)`;
+    console.log(images);
+  // --- controls with animation lock ---
+  const prev = () => { setDir(-1); setIdx((i) => (i - 1 + images.length) % images.length); };
+  const next = () => { setDir(1);  setIdx((i) => (i + 1) % images.length); };
+  const safePrev = () => { if (!animating) { setAnimating(true); prev(); } };
+  const safeNext = () => { if (!animating) { setAnimating(true); next(); } };
 
-    // Exact left offsets: center edge ± gap ± tile width
-    const leftLeft = `calc(50% - ${W / 2}% - ${innerPad}px - ${W}%)`;
-    const rightLeft = `calc(50% + ${W / 2}% + ${innerPad}px)`;
+  // drag/swipe
+  const dragProps = {
+    drag: "x" as const,
+    dragElastic: 0.12,
+    dragConstraints: { left: 0, right: 0 },
+    onDragEnd: (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      if (info.offset.x < -50) safeNext();
+      else if (info.offset.x > 50) safePrev();
+    },
+  };
 
-    // --- navigation with animation lock (prevents ìskipsî) ---
-    const prev = () => {
-        setDir(-1);
-        setIdx((i) => (i - 1 + images.length) % images.length);
+  // keyboard
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") safePrev();
+      if (e.key === "ArrowRight") safeNext();
     };
-    const next = () => {
-        setDir(1);
-        setIdx((i) => (i + 1) % images.length);
-    };
-    const safePrev = () => {
-        if (!animating) {
-            setAnimating(true);
-            prev();
-        }
-    };
-    const safeNext = () => {
-        if (!animating) {
-            setAnimating(true);
-            next();
-        }
-    };
-    const dragProps = {
-        drag: "x" as const,
-        dragElastic: 0.12,
-        dragConstraints: { left: 0, right: 0 },
-        onDragEnd: (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-            if (info.offset.x < -50) safeNext();
-            else if (info.offset.x > 50) safePrev();
-        },
-    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [animating, images.length]);
 
-    // keyboard
-    useEffect(() => {
-        const onKey = (e: KeyboardEvent) => {
-            if (e.key === "ArrowLeft") safePrev();
-            if (e.key === "ArrowRight") safeNext();
-        };
-        window.addEventListener("keydown", onKey);
-        return () => window.removeEventListener("keydown", onKey);
-    }, [animating, images.length]);
+  if (!images || images.length === 0) return null;
 
-    
-    if (!images || images.length === 0) return null;
-    const at = (i: number) => images[(i + images.length) % images.length];
-    return (
-        <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden bg-white/[0.02] border-y border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-            {/* Aspect box controls height */}
-            <div className="relative w-full" style={{ paddingTop }}>
-                {/* Subtle edge mask; above images but doesnít block clicks */}
-                <div className="pointer-events-none absolute inset-0 z-20 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" />
+  // neighbor helpers (only render current ¬±1)
+  const at = (i: number) => images[(i + images.length) % images.length];
+  const slides = useMemo(() => [at(idx - 1), at(idx), at(idx + 1)], [idx, images]);
+  console.log(slides);
+  return (
+    <div
+      className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden bg-white/[0.02] border-y border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Showcase"
+      aria-live="polite"
+    >
+      {/* Aspect box controls height */}
+      <div className="relative w-full" style={{ paddingTop }}>
+        {/* Subtle edge mask; above images but doesn‚Äôt block clicks */}
+        <div className="pointer-events-none absolute inset-0 z-20 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" />
 
-                <AnimatePresence initial={false} custom={dir}>
-                    <motion.div
-                        key={idx}
-                        custom={dir}
-                        variants={slideVariants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        transition={{
-                            x: { duration: 0.35, ease: "easeOut" },
-                            opacity: { duration: 0.25, ease: "linear" },
-                        }}
-                        className="absolute inset-0 z-10 will-change-transform will-change-opacity"
-                        {...dragProps}
-                        onAnimationComplete={() => setAnimating(false)}
-                    >
-                        {/* CENTER ó on top of side tiles */}
-                        <img
-                            src={at(idx)}
-                            alt=""
-                            style={{ width: centerWidth }}
-                            className="absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2 rounded-xl object-cover z-[5]"
-                            loading="lazy"
-                        />
+        <AnimatePresence initial={false} custom={dir}>
+          <motion.div
+            key={idx}
+            custom={dir}
+            variants={prefersReducedMotion ? undefined : slideVariants}
+            initial={prefersReducedMotion ? false : "enter"}
+            animate={prefersReducedMotion ? {} : "center"}
+            exit={prefersReducedMotion ? undefined : "exit"}
+            transition={
+              prefersReducedMotion
+                ? undefined
+                : {
+                    x: { duration: 0.35, ease: "easeOut" },
+                    opacity: { duration: 0.25, ease: "linear" },
+                  }
+            }
+            className="absolute inset-0 z-10 will-change-transform will-change-opacity"
+            {...dragProps}
+            onAnimationComplete={() => setAnimating(false)}
+          >
+           {/* CENTER */}
+<SlidePicture
+  slide={slides[1]}
+  style={{ width: centerWidth }}
+  className="absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2 rounded-xl object-cover z-[5]"
+/>
 
-                        {/* LEFT ó equal size, mostly off-canvas; doesnít capture events */}
-                        <img
-                            src={at(idx - 1)}
-                            alt=""
-                            style={{ width: centerWidth, left: leftLeft }}
-                            className="absolute top-1/2 -translate-y-1/2 h-full rounded-xl object-cover z-0 pointer-events-none"
-                            loading="lazy"
-                        />
+{/* LEFT */}
+<SlidePicture
+  slide={slides[0]}
+  style={{ width: centerWidth, left: leftLeft }}
+  className="absolute top-1/2 -translate-y-1/2 h-full rounded-xl object-cover z-0 pointer-events-none"
+  inert
+/>
 
-                        {/* RIGHT ó equal size, mostly off-canvas; doesnít capture events */}
-                        <img
-                            src={at(idx + 1)}
-                            alt=""
-                            style={{ width: centerWidth, left: rightLeft }}
-                            className="absolute top-1/2 -translate-y-1/2 h-full rounded-xl object-cover z-0 pointer-events-none"
-                            loading="lazy"
-                        />
-                    </motion.div>
-                </AnimatePresence>
-            </div>
+{/* RIGHT */}
+<SlidePicture
+  slide={slides[2]}
+  style={{ width: centerWidth, left: rightLeft }}
+  className="absolute top-1/2 -translate-y-1/2 h-full rounded-xl object-cover z-0 pointer-events-none"
+  inert
+/>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
-            {/* Controls ó always above everything */}
-            <button
-                aria-label="Previous"
-                onClick={safePrev}
-                className="group absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-black/50 p-2 backdrop-blur hover:bg-black/70 z-40"
-            >
-                <ChevronLeft className="h-6 w-6 text-zinc-200 group-hover:text-white" />
-            </button>
-            <button
-                aria-label="Next"
-                onClick={safeNext}
-                className="group absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-black/50 p-2 backdrop-blur hover:bg-black/70 z-40"
-            >
-                <ChevronRight className="h-6 w-6 text-zinc-200 group-hover:text-white" />
-            </button>
-        </div>
-    );
+      {/* Controls */}
+      <button
+        aria-label="Previous slide"
+        onClick={safePrev}
+        className="group absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-black/50 p-2 backdrop-blur hover:bg-black/70 z-40"
+      >
+        <ChevronLeft className="h-6 w-6 text-zinc-200 group-hover:text-white" />
+      </button>
+      <button
+        aria-label="Next slide"
+        onClick={safeNext}
+        className="group absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-black/50 p-2 backdrop-blur hover:bg-black/70 z-40"
+      >
+        <ChevronRight className="h-6 w-6 text-zinc-200 group-hover:text-white" />
+      </button>
+    </div>
+  );
+}
+
+function SlidePicture({
+  slide,
+  className,
+  style,
+  inert,
+}: {
+  slide: Slide;
+  className?: string;
+  style?: React.CSSProperties;
+  inert?: boolean;
+}) {
+    console.log(slide);
+  const { meta, tiny, alt } = slide;
+
+  // use your real tile width (percent of viewport) if you pass it via style
+  const pct = Number((style as any)?.['--tilePct']) || 60;
+  const sizes = `(min-width:1024px) ${pct}vw, 95vw`;
+
+  // turn the object into an array for <source> tags
+  const pictureSources = [
+    meta.sources.avif && { type: 'image/avif', srcset: meta.sources.avif },
+    meta.sources.webp && { type: 'image/webp', srcset: meta.sources.webp },
+    meta.sources.jpeg && { type: 'image/jpeg', srcset: meta.sources.jpeg },
+  ].filter(Boolean) as { type: string; srcset: string }[];
+
+  return (
+    <picture
+      style={{
+        ...style,
+        backgroundImage: `url('${tiny}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+      className={className}
+      {...(inert ? { 'aria-hidden': true } : {})}
+    >
+      {pictureSources.map((s, i) => (
+        <source key={i} type={s.type} srcSet={s.srcset} sizes={sizes} />
+      ))}
+
+      {/* jpg fallback (meta.img.src is a url string) */}
+      <img
+        src={meta.img.src}
+        srcSet={meta.img.srcset}  // may be undefined; safe
+        sizes={sizes}
+        alt={alt}
+        loading="lazy"
+        className="h-full w-full object-cover rounded-xl"
+      />
+    </picture>
+  );
 }

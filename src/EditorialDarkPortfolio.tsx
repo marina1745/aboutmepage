@@ -1,8 +1,12 @@
-﻿import { useEffect, useRef, useState } from "react";
+﻿
 import { motion } from "framer-motion";
 import { ArrowUpRight, Mail, Github, Linkedin } from "lucide-react";
+// top of file
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
+// ↓ replace direct import
+// import AestheticCarousel from "./components/AestheticCarousel";
+const AestheticCarousel = lazy(() => import("./components/AestheticCarousel"));
 
-import AestheticCarousel from "./components/AestheticCarousel";
 import { useLocation, Link } from "react-router-dom";
 import { projects } from "./lib/projects";
 
@@ -13,14 +17,39 @@ import { projects } from "./lib/projects";
 //   Headline: "Playfair Display" or "Literata"; Body: "Inter" or "General Sans"
 // Add to your router or render as <EditorialDarkPortfolio />
 
+
+// put ?imagetools FIRST
+import pic1 from './assets/holidaypics/1.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
+import pic2 from './assets/holidaypics/2.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
+import pic3 from './assets/holidaypics/3.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
+import pic4 from './assets/holidaypics/4.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
+import pic5 from './assets/holidaypics/5.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
+import pic6 from './assets/holidaypics/6.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
+
+import p1Tiny from './assets/holidaypics/1.jpeg?imagetools&w=24&as=base64';
+import p2Tiny from './assets/holidaypics/2.jpeg?imagetools&w=24&as=base64';
+import p3Tiny from './assets/holidaypics/3.jpeg?imagetools&w=24&as=base64';
+import p4Tiny from './assets/holidaypics/4.jpeg?imagetools&w=24&as=base64';
+import p5Tiny from './assets/holidaypics/5.jpeg?imagetools&w=24&as=base64';
+import p6Tiny from './assets/holidaypics/6.jpeg?imagetools&w=24&as=base64';
+
+
+
+
 const pics = [
-    "/holidaypics/holidaypic (1).jpeg",
-    "/holidaypics/holidaypic (2).jpeg",
-    "/holidaypics/holidaypic (3).jpeg",
-    "/holidaypics/holidaypic (4).jpeg",
-    "/holidaypics/holidaypic (5).jpeg",
-    "/holidaypics/holidaypic (6).jpeg",
+  { meta: pic1, tiny: p1Tiny, alt: "Vienna light show" },
+  { meta: pic2, tiny: p2Tiny, alt: "Cologne Dome" },
+  { meta: pic3, tiny: p3Tiny , alt: "Hokkaido"},
+  { meta: pic4, tiny: p4Tiny, alt: "shirakawa-go" },
+  { meta: pic5, tiny: p5Tiny, alt: "Hongkong" },
+  { meta: pic6, tiny: p6Tiny, alt: "Singapore" },
 ];
+
+
+type PictureMeta = {
+  img: { src: string; srcset?: string; w?: number; h?: number };
+  sources: { avif?: string; webp?: string; jpeg?: string };
+};
 
 
 export default function EditorialDarkPortfolio() {
@@ -28,7 +57,7 @@ export default function EditorialDarkPortfolio() {
         <div className="min-h-screen bg-[#0E0E10] text-zinc-100 antialiased">
             
             <ReadingProgress />
-            <main>
+            <main>      
                 <Hero />
                 <Work />
                 <Writing />
@@ -131,19 +160,55 @@ function Hero() {
 
            
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-            <AestheticCarousel
-                images={pics}
-                aspect={36 / 9}                     // wider vs height; try 32/9 or 28/9 if too short                     // show more/less of side images
-                innerPad={14}                     // space between center and peeks
-                tilePct={70}                      // all three are 70% of container width (equal)
-               
-            /></div>
-           
+            <DeferredCarousel images={pics}/>
+           </div>
          
 
         </section>
     );
 }
+
+type Slide = { meta: PictureMeta; tiny: string; alt: string };
+type Props = { images: Slide[] };
+function DeferredCarousel({images}:Props) {
+  const ref = useRef<HTMLDivElement|null>(null);
+  const [show, setShow] = useState(false);
+   
+  useEffect(() => {
+    const el = ref.current!;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        setShow(true);
+        io.disconnect();
+      }
+    }, { rootMargin: '600px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+      <Suspense fallback={<CarouselSkeleton />}>
+        {show ? (
+          <AestheticCarousel
+            // pass fully-described images to your carousel
+            images={images}
+            aspect={36/9}
+            innerPad={14}
+            tilePct={70}
+          />
+        ) : <CarouselSkeleton />}
+      </Suspense>
+    </div>
+  );
+}
+
+function CarouselSkeleton() {
+  return (
+    <div className="h-[40vw] max-h-[420px] min-h-[220px] bg-white/[0.03] animate-pulse rounded-none" />
+  );
+}
+
 
 function Work() {
     const chosen = [

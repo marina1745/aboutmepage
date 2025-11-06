@@ -3,6 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import { useMemo} from "react";
 import { projects } from "../../lib/projects";
 
+
+// supports: plain string, imagetools meta, imagetools picture
+type ImgString = string;
+type ImgMeta = { src: string; srcset?: string; width?: number; height?: number };
+type ImgPicture = { img: { src: string; srcset?: string }, sources: { avif?: string; webp?: string; jpeg?: string } };
+type ImgAny = ImgString | ImgMeta | ImgPicture;
+
+
 export default function ProjectPage() {
     const { slug } = useParams<{ slug: string }>();
     const project = projects.find(p => p.slug === slug);
@@ -123,34 +131,15 @@ export default function ProjectPage() {
                                 key={i}
                                 className="rounded-2xl overflow-hidden ring-1 ring-zinc-800 bg-zinc-900/40"
                             >
-                                {/*m.type === "youtube" ? (
-                                    <div className="aspect-video w-full rounded-2xl overflow-hidden ring-1 ring-zinc-800">
-                                        <iframe
-                                            src={`https://www.youtube.com/embed/${m.id}`}
-                                            title={m.alt ?? project.title}
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            className="w-full h-full"
-                                        />
-                                    </div>
-                                ) :*/
-                                  m.type === "audio" ? (
-            <audio
-              src={m.src}
-              controls
-              className="w-full"
-            />) :
-                                    m.type === "image" ? (
-                                    <img src={m.src} alt={m.alt} className="w-full h-full object-cover" />
-                                ) : (
-                                    <video src={m.src} controls className="w-full h-full" />
-                                )}
-                                {m.caption && (
-                                    <figcaption className="p-3 text-xs text-zinc-400">
-                                        {m.caption}
-                                    </figcaption>
-                                )}
+                             {m.type === "image" ? (
+  RenderImage(m.src as ImgAny, m.alt ?? project.title)
+) : m.type === "audio" ? (
+  <audio src={m.src as string} controls className="w-full" />
+) : (
+  <video src={m.src as string} controls className="w-full h-full" />
+)}
+
+
                             </figure>
                         ))}
                     </div>
@@ -160,3 +149,30 @@ export default function ProjectPage() {
         </article>
     );
 }
+
+
+function RenderImage(src: ImgAny, alt: string, cls = "w-full h-full object-cover") {
+  const sizes = "(min-width:1024px) 50vw, 100vw";
+
+  // string from /public or external URL
+  if (typeof src === "string") {
+    return <img src={src} alt={alt} className={cls} loading="lazy" />;
+  }
+  // imagetools <picture>
+  if ("img" in src && "sources" in src) {
+    return (
+      <picture>
+        {src.sources.avif && <source type="image/avif" srcSet={src.sources.avif} sizes={sizes} />}
+        {src.sources.webp && <source type="image/webp" srcSet={src.sources.webp} sizes={sizes} />}
+        {src.sources.jpeg && <source type="image/jpeg" srcSet={src.sources.jpeg} sizes={sizes} />}
+        <img src={src.img.src} srcSet={src.img.srcset} sizes={sizes} alt={alt} className={cls} loading="lazy" />
+      </picture>
+    );
+  }
+  // imagetools meta
+  if ("src" in src) {
+    return <img src={src.src} srcSet={src.srcset} sizes={sizes} alt={alt} className={cls} loading="lazy" />;
+  }
+  return null;
+}
+

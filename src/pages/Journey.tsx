@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 
+
+import imgF from "../assets/mypictures/dqisland.jpeg";
 export default function Journey() {
     return (
         <div className="min-h-screen bg-[#0E0E10] text-zinc-200 antialiased">
@@ -39,8 +41,10 @@ export default function Journey() {
                         transition={{ duration: 0.4, delay: 0.05 }}
                         className="md:col-span-4"
                     >
+
+                       
                         <img
-                            src="/dqisland.jpeg"
+                            src={imgF}
                             alt="My obsession"
                             className="w-full rounded-2xl object-cover md:h-64 lg:h-80"
                         />
