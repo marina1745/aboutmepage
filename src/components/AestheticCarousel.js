@@ -82,21 +82,16 @@ export default function AestheticCarousel({ images, aspect = 36 / 9, tilePct = 6
                                 }, className: "absolute inset-0 z-10 will-change-transform will-change-opacity", ...dragProps, onAnimationComplete: () => setAnimating(false), children: [_jsx(SlidePicture, { slide: slides[1], style: { width: centerWidth }, className: "absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2 rounded-xl object-cover z-[5]" }), _jsx(SlidePicture, { slide: slides[0], style: { width: centerWidth, left: leftLeft }, className: "absolute top-1/2 -translate-y-1/2 h-full rounded-xl object-cover z-0 pointer-events-none", inert: true }), _jsx(SlidePicture, { slide: slides[2], style: { width: centerWidth, left: rightLeft }, className: "absolute top-1/2 -translate-y-1/2 h-full rounded-xl object-cover z-0 pointer-events-none", inert: true })] }, idx) })] }), _jsx("button", { "aria-label": "Previous slide", onClick: safePrev, className: "group absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-black/50 p-2 backdrop-blur hover:bg-black/70 z-40", children: _jsx(ChevronLeft, { className: "h-6 w-6 text-zinc-200 group-hover:text-white" }) }), _jsx("button", { "aria-label": "Next slide", onClick: safeNext, className: "group absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-black/50 p-2 backdrop-blur hover:bg-black/70 z-40", children: _jsx(ChevronRight, { className: "h-6 w-6 text-zinc-200 group-hover:text-white" }) })] }));
 }
 function SlidePicture({ slide, className, style, inert, }) {
-    console.log(slide);
     const { meta, tiny, alt } = slide;
-    // use your real tile width (percent of viewport) if you pass it via style
-    const pct = Number(style?.['--tilePct']) || 60;
-    const sizes = `(min-width:1024px) ${pct}vw, 95vw`;
-    // turn the object into an array for <source> tags
-    const pictureSources = [
-        meta.sources.avif && { type: 'image/avif', srcset: meta.sources.avif },
-        meta.sources.webp && { type: 'image/webp', srcset: meta.sources.webp },
-        meta.sources.jpeg && { type: 'image/jpeg', srcset: meta.sources.jpeg },
-    ].filter(Boolean);
-    return (_jsxs("picture", { style: {
+    // Be robust at runtime: try picture shape, then meta shape
+    const m = meta;
+    const imgSrc = m?.img?.src ?? m?.src ?? tiny; // last resort: tiny
+    const imgSrcset = m?.img?.srcset ?? m?.srcset ?? undefined;
+    const sizes = `(min-width:1024px) ${Number(style?.["--tilePct"] ?? 60)}vw, 95vw`;
+    return (_jsx("div", { style: {
             ...style,
             backgroundImage: `url('${tiny}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-        }, className: className, ...(inert ? { 'aria-hidden': true } : {}), children: [pictureSources.map((s, i) => (_jsx("source", { type: s.type, srcSet: s.srcset, sizes: sizes }, i))), _jsx("img", { src: meta.img.src, srcSet: meta.img.srcset, sizes: sizes, alt: alt, loading: "lazy", className: "h-full w-full object-cover rounded-xl" })] }));
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+        }, className: className, ...(inert ? { "aria-hidden": true } : {}), children: _jsx("img", { src: imgSrc, srcSet: imgSrcset, sizes: sizes, alt: alt, loading: "lazy", decoding: "async", className: "h-full w-full object-cover rounded-xl" }) }));
 }
