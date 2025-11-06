@@ -10,7 +10,7 @@ const tabs = [
 export default function ArchivePage() {
     const [sp, setSp] = useSearchParams();
     const navigate = useNavigate();
-
+    sessionStorage.setItem("from", "archive");
     useEffect(() => {
         if (!sp.get("type")) {
             navigate("/archive?type=game", { replace: true });
