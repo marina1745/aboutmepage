@@ -22,10 +22,10 @@ const slideVariants = {
   }),
 };
 
-type PictureMeta = {
-  img: { src: string; srcset?: string; w?: number; h?: number };
-  sources: { avif?: string; webp?: string; jpeg?: string };
-};
+type PictureMeta =
+  | { img: { src: string; srcset?: string }; sources?: { avif?: string; webp?: string; jpeg?: string } } // as=picture
+  | { src: string; srcset?: string }; // as=meta
+
 type Slide = { meta: PictureMeta; tiny: string; alt: string };
 
 type Props = {
@@ -174,55 +174,42 @@ export default function AestheticCarousel({
   );
 }
 
+
 function SlidePicture({
-  slide,
-  className,
-  style,
-  inert,
-}: {
-  slide: Slide;
-  className?: string;
-  style?: React.CSSProperties;
-  inert?: boolean;
-}) {
-    console.log(slide);
+  slide, className, style, inert,
+}: { slide: Slide; className?: string; style?: React.CSSProperties; inert?: boolean }) {
   const { meta, tiny, alt } = slide;
 
-  // use your real tile width (percent of viewport) if you pass it via style
-  const pct = Number((style as any)?.['--tilePct']) || 60;
-  const sizes = `(min-width:1024px) ${pct}vw, 95vw`;
+  const isPicture = (m: any): m is { img: { src: string; srcset?: string }; sources?: { avif?: string; webp?: string; jpeg?: string } } =>
+    m && typeof m === "object" && "img" in m;
 
-  // turn the object into an array for <source> tags
-  const pictureSources = [
-    meta.sources.avif && { type: 'image/avif', srcset: meta.sources.avif },
-    meta.sources.webp && { type: 'image/webp', srcset: meta.sources.webp },
-    meta.sources.jpeg && { type: 'image/jpeg', srcset: meta.sources.jpeg },
-  ].filter(Boolean) as { type: string; srcset: string }[];
+  const imgSrc    = isPicture ? meta.img.src    : (meta as any).src;
+  const imgSrcset = isPicture ? meta.img.srcset : (meta as any).srcset;
+
+  const sources = isPicture && (meta as any).sources
+    ? [
+        (meta as any).sources.avif && { type: "image/avif", srcset: (meta as any).sources.avif },
+        (meta as any).sources.webp && { type: "image/webp", srcset: (meta as any).sources.webp },
+        (meta as any).sources.jpeg && { type: "image/jpeg", srcset: (meta as any).sources.jpeg },
+      ].filter(Boolean) as { type: string; srcset: string }[]
+    : [];
+
+  const sizes = `(min-width:1024px) ${Number((style as any)?.["--tilePct"] ?? 60)}vw, 95vw`;
 
   return (
     <picture
       style={{
         ...style,
         backgroundImage: `url('${tiny}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
       className={className}
-      {...(inert ? { 'aria-hidden': true } : {})}
+      {...(inert ? { "aria-hidden": true } : {})}
     >
-      {pictureSources.map((s, i) => (
-        <source key={i} type={s.type} srcSet={s.srcset} sizes={sizes} />
-      ))}
-
-      {/* jpg fallback (meta.img.src is a url string) */}
-      <img
-        src={meta.img.src}
-        srcSet={meta.img.srcset}  // may be undefined; safe
-        sizes={sizes}
-        alt={alt}
-        loading="lazy"
-        className="h-full w-full object-cover rounded-xl"
-      />
+      {sources.map((s, i) => <source key={i} type={s.type} srcSet={s.srcset} sizes={sizes} />)}
+      <img src={imgSrc} srcSet={imgSrcset} sizes={sizes} alt={alt} loading="lazy"
+           className="h-full w-full object-cover rounded-xl" />
     </picture>
   );
 }
