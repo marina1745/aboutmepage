@@ -19,12 +19,12 @@ import { projects } from "./lib/projects";
 
 
 // put ?imagetools FIRST
-import pic1 from './assets/holidaypics/1.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
-import pic2 from './assets/holidaypics/2.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
-import pic3 from './assets/holidaypics/3.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
-import pic4 from './assets/holidaypics/4.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
-import pic5 from './assets/holidaypics/5.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
-import pic6 from './assets/holidaypics/6.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=picture';
+import pic1 from './assets/holidaypics/1.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=meta';
+import pic2 from './assets/holidaypics/2.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=meta';
+import pic3 from './assets/holidaypics/3.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=meta';
+import pic4 from './assets/holidaypics/4.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=meta';
+import pic5 from './assets/holidaypics/5.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=meta';
+import pic6 from './assets/holidaypics/6.jpeg?imagetools&w=480;768;1200;1600&format=avif;webp;jpg&as=meta';
 
 import p1Tiny from './assets/holidaypics/1.jpeg?imagetools&w=24&as=base64';
 import p2Tiny from './assets/holidaypics/2.jpeg?imagetools&w=24&as=base64';
