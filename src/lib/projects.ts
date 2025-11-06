@@ -101,7 +101,7 @@ function aud(name: string): string {
 const I = (name: string, alt?: string): MediaItemImage => ({ type: "image", src: pic(name), alt });
 const V = (name: string, caption?: string): MediaItemVideo => ({ type: "video", src: vid(name), caption });
 const A = (name: string, caption?: string): MediaItemAudio => ({ type: "audio", src: aud(name), caption });
-const YT = (url: string, caption?: string): MediaItemYouTube => ({ type: "youtube", src: url, caption });
+//const YT = (url: string, caption?: string): MediaItemYouTube => ({ type: "youtube", src: url, caption });
 
 // ===================================================================================
 // Projects (all media now resolved from src/assets/projectmedia/* with SAME filenames)

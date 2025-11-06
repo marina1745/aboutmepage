@@ -1,0 +1,15 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import App from "./App";
+import Impressum from "./pages/Impressum";
+import Privacy from "./pages/Privacy";
+import Layout from "./Layout";
+import Personal from "./pages/Personal";
+import Journey from "./pages/Journey";
+import ArchivePage from "./pages/archive/ArchivePage";
+import "./index.css";
+import ScrollToTop from "./components/ScrollToTop";
+import ProjectPage from "./pages/project/ProjectPage";
+ReactDOM.createRoot(document.getElementById("root")).render(_jsx(React.StrictMode, { children: _jsxs(HashRouter, { children: [_jsx(ScrollToTop, {}), _jsxs(Routes, { children: [_jsx(Route, { path: "/", element: _jsx(Layout, { children: _jsx(App, {}) }) }), _jsx(Route, { path: "/impressum", element: _jsx(Layout, { children: _jsx(Impressum, {}) }) }), _jsx(Route, { path: "/privacy", element: _jsx(Layout, { children: _jsx(Privacy, {}) }) }), _jsx(Route, { path: "/personal", element: _jsx(Layout, { children: _jsx(Personal, {}) }) }), _jsx(Route, { path: "/archive", element: _jsx(Layout, { children: _jsx(ArchivePage, {}) }) }), _jsx(Route, { path: "/journey", element: _jsx(Layout, { children: _jsx(Journey, {}) }) }), _jsx(Route, { path: "/work/:slug", element: _jsx(Layout, { children: _jsx(ProjectPage, {}) }) })] })] }) }));
