@@ -180,19 +180,33 @@ function SlidePicture({
 }: { slide: Slide; className?: string; style?: React.CSSProperties; inert?: boolean }) {
   const { meta, tiny, alt } = slide;
 
-  const isPicture = (m: any): m is { img: { src: string; srcset?: string }; sources?: { avif?: string; webp?: string; jpeg?: string } } =>
-    m && typeof m === "object" && "img" in m;
+  // type guard for `as=picture` shape
+  const isPicture = (
+    m: PictureMeta
+  ): m is { img: { src: string; srcset?: string }; sources?: { avif?: string; webp?: string; jpeg?: string } } => {
+    return !!m && typeof m === "object" && "img" in (m as any);
+  };
 
-  const imgSrc    = isPicture ? meta.img.src    : (meta as any).src;
-  const imgSrcset = isPicture ? meta.img.srcset : (meta as any).srcset;
-
-  const sources = isPicture && (meta as any).sources
-    ? [
-        (meta as any).sources.avif && { type: "image/avif", srcset: (meta as any).sources.avif },
-        (meta as any).sources.webp && { type: "image/webp", srcset: (meta as any).sources.webp },
-        (meta as any).sources.jpeg && { type: "image/jpeg", srcset: (meta as any).sources.jpeg },
-      ].filter(Boolean) as { type: string; srcset: string }[]
-    : [];
+  // pick src/srcset depending on shape
+  const { imgSrc, imgSrcset, sources } = (() => {
+    if (isPicture(meta)) {
+      return {
+        imgSrc: meta.img.src,
+        imgSrcset: meta.img.srcset,
+        sources: [
+          meta.sources?.avif && { type: "image/avif", srcset: meta.sources.avif },
+          meta.sources?.webp && { type: "image/webp", srcset: meta.sources.webp },
+          meta.sources?.jpeg && { type: "image/jpeg", srcset: meta.sources.jpeg },
+        ].filter(Boolean) as { type: string; srcset: string }[],
+      };
+    } else {
+      return {
+        imgSrc: (meta as any).src as string,
+        imgSrcset: (meta as any).srcset as string | undefined,
+        sources: [] as { type: string; srcset: string }[],
+      };
+    }
+  })();
 
   const sizes = `(min-width:1024px) ${Number((style as any)?.["--tilePct"] ?? 60)}vw, 95vw`;
 
@@ -207,9 +221,17 @@ function SlidePicture({
       className={className}
       {...(inert ? { "aria-hidden": true } : {})}
     >
-      {sources.map((s, i) => <source key={i} type={s.type} srcSet={s.srcset} sizes={sizes} />)}
-      <img src={imgSrc} srcSet={imgSrcset} sizes={sizes} alt={alt} loading="lazy"
-           className="h-full w-full object-cover rounded-xl" />
+      {sources.map((s, i) => (
+        <source key={i} type={s.type} srcSet={s.srcset} sizes={sizes} />
+      ))}
+      <img
+        src={imgSrc}
+        srcSet={imgSrcset}
+        sizes={sizes}
+        alt={alt}
+        loading="lazy"
+        className="h-full w-full object-cover rounded-xl"
+      />
     </picture>
   );
 }
