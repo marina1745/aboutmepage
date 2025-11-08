@@ -118,56 +118,45 @@ function Hero() {
     };
     return (
         <section id="top" className="relative overflow-hidden">
-            {/* Full-bleed editorial hero */}
-            <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-end gap-10 px-5 pb-24 pt-20 md:grid-cols-12 md:pt-28">
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
-                    className="col-span-7 font-serif text-5xl leading-[1.05] tracking-tight md:text-7xl"
-                >
-                    Games Engineer, Visual Computation & XR Researcher, Pretty Chill Girl
-                </motion.h1>
+  <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-end gap-10 px-5 pb-24 pt-20 md:grid-cols-12 md:pt-28">
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.1 }}
-                    className="col-span-5 md:pl-8"
-                >
-                    <p className="max-w-xl text-zinc-300 md:text-lg">
-                        I work at the intersection of graphics, perception, and interaction - exploring how humans see, move, and connect in virtual worlds. My background in games engineering meets my curiosity for research, and together they keep me chasing beauty in systems, whether it’s light in a shader or data in an eye tracker.
+    <motion.h1
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      className="md:col-span-7 font-serif text-5xl leading-[1.05] tracking-tight md:text-7xl"
+    >
+      Games Engineer, Visual Computation & XR Researcher, Pretty Chill Girl
+    </motion.h1>
 
-                      
-                    </p>
-                    <div className="mt-6 flex flex-wrap gap-3">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, delay: 0.1 }}
+      className="md:col-span-5 md:pl-8"
+    >
+      <p className="max-w-xl text-zinc-300 md:text-lg [text-align:justify] [text-justify:inter-word]">
+        I work at the intersection of graphics, perception, and interaction — exploring how humans see, move, and connect in virtual worlds. My background in games engineering meets my curiosity for research, and together they keep me chasing beauty in systems, whether it’s light in a shader or data in an eye tracker.
+      </p>
 
-                        
-                        
-                        
-                        <span
-                            className="rounded-2xl border border-white/20 bg-white text-black px-5 py-3 text-sm font-medium 
-                            hover:bg-zinc-200 inline-flex items-center transition-colors"
-                        >
-                            {makeLink("work", "See Selected Work")}<ArrowUpRight className="ml-1 inline h-4 w-4" ></ArrowUpRight></span> 
-                        <Link to="/personal" className="rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 hover:border-white/40 inline-flex">
-                            Meet me
-                        </Link>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <span className="rounded-2xl border border-white/20 bg-white text-black px-5 py-3 text-sm font-medium hover:bg-zinc-200 inline-flex items-center transition-colors">
+          {makeLink("work", "See Selected Work")}
+          <ArrowUpRight className="ml-1 inline h-4 w-4" />
+        </span>
+        <Link to="/personal" className="rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 hover:border-white/40 inline-flex">
+          Meet me
+        </Link>
+      </div>
+    </motion.div>
+  </div>
 
-                    </div>
-                </motion.div>
-            </div>
-
-           
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-            <DeferredCarousel images={pics}/>
-           </div>
-         
-
-        </section>
-    );
+  <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+    <DeferredCarousel images={pics} />
+  </div>
+</section>
+    )
 }
-
 type Slide = { meta: PictureMeta; tiny: string; alt: string };
 type Props = { images: Slide[] };
 function DeferredCarousel({images}:Props) {
