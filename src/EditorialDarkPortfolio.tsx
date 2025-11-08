@@ -135,7 +135,7 @@ function Hero() {
       transition={{ duration: 0.7, delay: 0.1 }}
       className="md:col-span-5 md:pl-8"
     >
-      <p className="max-w-xl text-zinc-300 md:text-lg [text-align:justify] [text-justify:inter-word]">
+      <p className="max-w-xl text-zinc-300 md:text-lg ">
         I work at the intersection of graphics, perception, and interaction — exploring how humans see, move, and connect in virtual worlds. My background in games engineering meets my curiosity for research, and together they keep me chasing beauty in systems, whether it’s light in a shader or data in an eye tracker.
       </p>
 
