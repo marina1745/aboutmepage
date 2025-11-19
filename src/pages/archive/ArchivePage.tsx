@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { projects } from "../../lib/projects";
 
 const tabs = [
+    {key: "academic", label: "Theses & Research"},
     { key: "game", label: "Game Projects" },
-    { key: "non-game", label: "Non-Game Projects" },
+    { key: "non-game", label: "Other" },
 ] as const;
 
 export default function ArchivePage() {
@@ -17,18 +18,18 @@ export default function ArchivePage() {
         }
     }, [sp, navigate]);
 
-    const active = (sp.get("type") ?? "game") as "game" | "non-game";
+    const active = (sp.get("type") ?? "game") as "game" | "non-game" | "academic";
     const filtered = projects.filter(p => p.category === active);
 
     useEffect(() => {
         const q = sp.get("type");
         if (!q) {
-            const saved = sessionStorage.getItem("archiveType") as "game" | "non-game" | null;
+            const saved = sessionStorage.getItem("archiveType") as "game" | "non-game" | "academic"| null;
             const fallback = saved ?? "game";
             sessionStorage.setItem("archiveType", fallback);
             navigate(`/archive?type=${fallback}`, { replace: true });
         } else {
-            sessionStorage.setItem("archiveType", q as "game" | "non-game");
+            sessionStorage.setItem("archiveType", q as "game" | "non-game" | "academic");
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -38,7 +39,6 @@ export default function ArchivePage() {
             <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-6 flex items-center gap-4">
                     <h1 className="text-3xl font-semibold">Archive</h1>
-
                     <div className="ml-auto inline-flex rounded-full bg-zinc-900/60 p-1 ring-1 ring-zinc-800">
                         {tabs.map(t => {
                             const isActive = t.key === active;
@@ -51,10 +51,11 @@ export default function ArchivePage() {
                                         sessionStorage.setItem("from", "archive");
                                         sessionStorage.setItem("archiveType", t.key);
                                     }}
-                                    className={`px-4 py-1.5 text-sm rounded-full transition ${isActive
-                                            ? "bg-zinc-100 text-zinc-900"
-                                            : "text-zinc-300 hover:text-white hover:bg-zinc-800/70"
-                                        }`}
+                                    className={`w-40 px-4 py-1.5 text-sm rounded-full text-center transition ${
+        isActive
+            ? "bg-zinc-100 text-zinc-900"
+            : "text-zinc-300 hover:text-white hover:bg-zinc-800/70"
+    }`}
                                 >
                                     {t.label}
                                 </button>

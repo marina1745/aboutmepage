@@ -2,7 +2,7 @@
 // ===================================================================================
 // Types
 // ===================================================================================
-export type ProjectCategory = "game" | "non-game";
+export type ProjectCategory = "game" | "non-game" | "academic";
 
 // Support all three shapes for images: plain string, imagetools meta, imagetools picture
 export type ImgString  = string;
@@ -330,7 +330,7 @@ export const projects: Project[] = [
     title: "Exploring the Impact of LLM-Powered Virtual Spaces on Privacy",
     summary: "VR experiment revealing how eye tracking data can expose personal information",
     tags: ["Unity", "Varjo XR-3", "SteamVR", "Ready Player Me", "OpenAI API", "AWS Polly", "Python", "Eye Tracking"],
-    category: "non-game",
+    category: "academic",
     body:
       "This project is part of a research-focused virtual reality experiment developed at the Technical University of Munich. " +
       "The goal was to investigate whether sensitive personal information—such as age, gender, ethnicity, or body weight—can be inferred from eye tracking data alone. " +
@@ -361,9 +361,9 @@ export const projects: Project[] = [
   {
     slug: "patient_information_system",
     title: "Patient Information System",
-    summary: "Desktop application that helps patients estimate the severity of their health problems",
+    summary: "Diploma Thesis in collaboration with BOOM Software AG",
     tags: ["C#", "WPF", "SQL", "Google Maps API", "Azure DevOps", "Git", "BORA Framework"],
-    category: "non-game",
+    category: "academic",
     body:
       "The 'Patient Information System' was developed as part of my diploma thesis at the Higher Technical College of Kaindorf in collaboration with BOOM Software AG. " +
       "The project aimed to create a prototype that enables users to perform a self-assessment of their symptoms and receive recommendations for the most suitable type of doctor. " +
@@ -385,14 +385,30 @@ export const projects: Project[] = [
     slug: "bachelor_thesis_integrity_space",
     title: "A Functional Gamespace Model – Hierarchical Graphs and Spatial Partitioning Based on the Integrity of Space",
     summary: "Bachelor thesis exploring hierarchical graph structures for procedural world generation",
-    tags: ["C++", "Unity", "Procedural Generation", "Graph Theory", "Spatial Partitioning"],
-    category: "non-game",
+    tags: ["C#", "Unity", "Procedural Generation", "Graph Theory", "Spatial Partitioning"],
+    category: "academic",
     body:
       "My Bachelor's thesis focused on developing a formalized model for representing and partitioning game worlds through hierarchical graph structures. " +
       "The system introduces the concept of *spatial integrity*, ensuring logical coherence between procedurally generated regions such as forests, deserts, and mountains. " +
       "Terrain was segmented using Voronoi-based partitioning from designer-defined seed points, producing naturally connected biomes that preserve spatial hierarchy and continuity. " +
       "The project also included custom Unity Editor tooling for region definition, visualization, and rapid iteration of procedural world layouts. " +
       "The result is a foundational framework for adaptive level design and world-building tools in modern game engines.",
+    media: [
+      // Add an image later if you have one: I("bachelor_thesis.png", "Thesis – Diagram"),
+    ],
+  },
+
+   // -------------------------------------------------------------------------------
+  // Bachelor Thesis — Integrity of Space
+  // -------------------------------------------------------------------------------
+  {
+    slug: "master_thesis",
+    title: "Master Thesis",
+    summary: "TODO",
+    tags: ["TODO"],
+    category: "academic",
+    body:
+      "TODO",
     media: [
       // Add an image later if you have one: I("bachelor_thesis.png", "Thesis – Diagram"),
     ],
