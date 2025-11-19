@@ -401,7 +401,7 @@ export const projects: Project[] = [
    // -------------------------------------------------------------------------------
   // Bachelor Thesis — Integrity of Space
   // -------------------------------------------------------------------------------
-  {
+ /* {
     slug: "master_thesis",
     title: "Master Thesis",
     summary: "TODO",
@@ -412,7 +412,7 @@ export const projects: Project[] = [
     media: [
       // Add an image later if you have one: I("bachelor_thesis.png", "Thesis – Diagram"),
     ],
-  },
+  },*/
 
   // -------------------------------------------------------------------------------
   // Terrain Rendering Project
