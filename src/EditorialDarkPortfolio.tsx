@@ -126,7 +126,7 @@ function Hero() {
       transition={{ duration: 0.7 }}
       className="md:col-span-7 font-serif text-5xl leading-[1.05] tracking-tight md:text-7xl"
     >
-      Games Engineer, Visual Computation & XR Researcher, Pretty Chill Girl
+      Games Engineer turned Visual Computation Researcher, Pretty Chill Girl
     </motion.h1>
 
     <motion.div
@@ -136,8 +136,8 @@ function Hero() {
       className="md:col-span-5 md:pl-8"
     >
       <p className="max-w-xl text-zinc-300 md:text-lg ">
-        I work at the intersection of graphics, perception, and interaction — exploring how humans see, move, and connect in virtual worlds. My background in games engineering meets my curiosity for research, and together they keep me chasing beauty in systems, whether it’s light in a shader or data in an eye tracker.
-      </p>
+     I build the technologies that shape the next generation of games - from neural rendering to XR interaction. I'm obsessed with making virtual worlds look and feel alive: Beautifully rendered characters, expressive physics, and systems that push visual computing forward. My work bridges engineering and research to turn impossible scenes into real-time reality.
+     </p>
 
       <div className="mt-6 flex flex-wrap gap-3">
         <span className="rounded-2xl border border-white/20 bg-white text-black px-5 py-3 text-sm font-medium hover:bg-zinc-200 inline-flex items-center transition-colors">
@@ -313,60 +313,70 @@ function About() {
     ];
     return (
         <section id="about" className="border-t border-white/10">
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 py-20 md:grid-cols-12">
-  <div className="md:col-span-6">
-    <h2 className="font-serif text-4xl md:text-5xl">About</h2>
-    <p className="mt-6 max-w-prose text-zinc-300 md:text-lg">
-      I’m an engineer working across XR, real-time rendering, and data systems. My background combines computer graphics, databases, and low-level programming in C/C++, enabling me to build efficient and scalable systems. I develop both research and game projects focused on game engine technology and computational visualization.
-    </p>
-    <p className="mt-4 max-w-prose text-zinc-400">
-      I like understanding how things work; Whether it’s code, systems, or people. I care about clarity and building things that make sense. Currently based in Munich. Studying Computer Science at Technical University of Munich (TUM).
-    </p>
-    <Link
-      to="/personal"
-      className="mt-8 inline-flex rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 hover:border-white/40"
-    >
-      Meet me
-    </Link>
-  
-</div>
+  <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 py-20 md:grid-cols-12">
+    <div className="md:col-span-6">
+      <h2 className="font-serif text-4xl md:text-5xl">About</h2>
+      <p className="mt-6 max-w-prose text-zinc-300 md:text-lg">
+        I'm a graphics engineer focused on building the
+        technologies behind next-generation games — from real-time neural
+        rendering to high-fidelity character and world simulation. My background
+        in visual computing, game engine development, and low-level C/C++ gives
+        me the tools to design systems that are fast, expressive, and
+        beautiful.
+      </p>
+      <p className="mt-4 max-w-prose text-zinc-400">
+        I care about how things work on every level — the math, the systems,
+        the behavior. I'm driven by clarity and by creating worlds that feel
+        alive, whether it's a shader, a simulation, or the flow of interaction.
+         Based in Munich, currently finishing my Master's in Computer
+        Science at TUM.
+      </p>
+      <Link
+        to="/personal"
+        className="mt-8 inline-flex rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 hover:border-white/40"
+      >
+        Meet me
+      </Link>
+    </div>
 
+    <div className="md:col-span-6 md:pl-8">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <h3 className="font-serif text-2xl">Skills & Tools</h3>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {skills.map((s) => (
+            <span
+              key={s}
+              className="rounded-full border border-white/10 px-3 py-1 text-sm text-zinc-300"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
 
-                <div className="md:col-span-6 md:pl-8">
-                    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-                        <h3 className="font-serif text-2xl">Skills & Tools</h3>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                            {skills.map((s) => (
-                                <span key={s} className="rounded-full border border-white/10 px-3 py-1 text-sm text-zinc-300">
-                                    {s}
-                                </span>
-                            ))}
-                        </div>
-                        <div className="mt-6 grid grid-cols-2 gap-4 text-sm text-zinc-300">
-                            <div>
-                                <p className="text-zinc-400">Currently interested in</p>
-                                <ul className="mt-1 list-disc pl-5">
-                                    <li>XR and graphics engineering</li>
-                                    <li>Game engine architecture</li>
-                                    <li>Data-oriented design and performance</li>
-                                    <li>Query optimization</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <p className="text-zinc-400">Highlights</p>
-                                <ul className="mt-1 list-disc pl-5">
-                                    <li>Developed an XR eye-tracking study from prototype to analysis</li>
-                                    <li>Built multiple game projects</li>
-                                    <li>Specialized in databases and low-level systems during my master's</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-            </div>
-        </section>
+        <div className="mt-6 grid grid-cols-2 gap-4 text-sm text-zinc-300">
+          <div>
+            <p className="text-zinc-400">Currently interested in</p>
+            <ul className="mt-1 list-disc pl-5">
+              <li>Neural & real-time rendering</li>
+              <li>Character simulation (hair, cloth, materials)</li>
+              <li>XR interaction & perceptual systems</li>
+              <li>Procedural worlds & game engine architecture</li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-zinc-400">Highlights</p>
+            <ul className="mt-1 list-disc pl-5">
+              <li>Designed and ran a full XR eye-tracking research study</li>
+              <li>Built multiple game and graphics projects from engine to visuals</li>
+              <li>Specialized in real-time rendering at TUM</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     );
 }
 
