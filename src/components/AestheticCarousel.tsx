@@ -22,6 +22,9 @@ const slideVariants = {
   }),
 };
 
+
+
+
 type PictureMeta =
   | { img: { src: string; srcset?: string }; sources?: { avif?: string; webp?: string; jpeg?: string } } // as=picture
   | { src: string; srcset?: string }; // as=meta
@@ -62,10 +65,18 @@ export default function AestheticCarousel({
       ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
       : false;
 
+      const isMobile =
+  typeof window !== "undefined" &&
+  window.matchMedia("(max-width: 768px)").matches;
+
+const effectiveAspect = isMobile ? 16 / 9 : aspect;
+const paddingTop = `${(1 / effectiveAspect) * 100}%`;
+const W = isMobile ? 92 : tilePct;
+const centerWidth = `${W}%`;
+
+
   // --- sizing / positions ---
-  const paddingTop = `${(1 / aspect) * 100}%`; // fix the band’s height by ratio
-  const W = tilePct;                            // tile width (%)
-  const centerWidth = `${W}%`;
+
   const leftLeft = `calc(50% - ${W / 2}% - ${innerPad}px - ${W}%)`;
   const rightLeft = `calc(50% + ${W / 2}% + ${innerPad}px)`;
     console.log(images);
@@ -111,7 +122,10 @@ export default function AestheticCarousel({
       aria-live="polite"
     >
       {/* Aspect box controls height */}
-      <div className="relative w-full" style={{ paddingTop }}>
+      <div
+  className="relative w-full min-h-[240px] sm:min-h-0"
+  style={{ paddingTop }}
+>
         {/* Subtle edge mask; above images but doesn’t block clicks */}
         <div className="pointer-events-none absolute inset-0 z-20 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" />
 
@@ -146,20 +160,22 @@ export default function AestheticCarousel({
 
 
 {/* LEFT */}
+{!isMobile && (
 <SlidePicture
   slide={slides[0]}
   style={{ width: centerWidth, left: leftLeft }}
   className="absolute top-1/2 -translate-y-1/2 h-full rounded-xl object-cover z-0 pointer-events-none"
   inert
-/>
+/>)}
 
 {/* RIGHT */}
+{!isMobile && (
 <SlidePicture
   slide={slides[2]}
   style={{ width: centerWidth, left: rightLeft }}
   className="absolute top-1/2 -translate-y-1/2 h-full rounded-xl object-cover z-0 pointer-events-none"
   inert
-/>
+/>)}
           </motion.div>
         </AnimatePresence>
       </div>
