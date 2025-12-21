@@ -40,10 +40,12 @@ const pics = [
   { meta: pic1, tiny: p1Tiny, alt: "Vienna light show", overlayText:"Colored beams interacting with fog, bark, and ground, revealing the challenge of volumetric scattering and color propagation in real time." },
   { meta: pic2, tiny: p2Tiny, alt: "Cologne Dome", overlayText:"Stained glass transforms sunlight into soft, indirect illumination" },
   { meta: pic3, tiny: p3Tiny , alt: "Hokkaido", overlayText:"Tiny light sources define the entire mood: Specular reflections, subtle ripples, and low-light exposure all need to remain readable without noise or flicker"},
-  { meta: pic4, tiny: p4Tiny, alt: "shirakawa-go",overlayText:"Snow appears is a complex topic in rendering: High albedo, soft shadows, and sky-tinted bounce light expose the limits of standard shading models in real-time rendering"},
+  { meta: pic4, tiny: p4Tiny, alt: "shirakawa-go",overlayText:"Snow is a complex topic in rendering: High albedo, soft shadows, and sky-tinted bounce light expose the limits of standard shading models in real-time rendering"},
   { meta: pic5, tiny: p5Tiny, alt: "Hongkong", overlayText: "The neon lights tint entire buildings and streets, challenging real-time pipelines to approximate color bleeding, emissive materials, and lens response."},
-  { meta: pic6, tiny: p6Tiny, alt: "Singapore", overlayText:"City lights stretch across water and atmosphere, demanding stable real-time reflections, HDR exposure control, and believable depth through light." },
-];
+  { meta: pic6, tiny: p6Tiny, alt: "Singapore", overlayText:
+"City lights stretch across water and atmosphere, while softly illuminated foreground foliage forms a natural dark frame—anchoring depth, scale separation, and the challenge of maintaining stable real-time reflections and HDR exposure across extreme luminance contrasts."
+  },
+]
 
 
 type PictureMeta = {
