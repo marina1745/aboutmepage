@@ -144,15 +144,13 @@ function Hero() {
   visual phenomena interactive, stable, and controllable.
   </p>
      <div className="mt-6 flex flex-wrap gap-3">
-      {/*
+      
         <span className="rounded-2xl border border-white/20 bg-white text-black px-5 py-3 text-sm font-medium hover:bg-zinc-200 inline-flex items-center transition-colors">
-          makeLink("work", "See Selected Work")
+          {makeLink("interests", "Learn about my interests")}
           <ArrowUpRight className="ml-1 inline h-4 w-4" />
         </span>
-        */}
-        <Link to="/personal" className="rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 hover:border-white/40 inline-flex">
-          Meet me
-        </Link>
+        
+        
       </div>
     </motion.div>
   </div>
@@ -363,7 +361,7 @@ function Writing() {
             title: "Real-Time Relighting of Temporally Coherent Cloud-Based Gaussian Volumes ",
             date: "2026",
             desc: "Master Thesis",
-            href: "/#/work/ssse",
+            href: "/#/work/master_thesis",
         },
       {
             title: "Exploring the Impact of LLM-Powered Virtual Spaces on Privacy",
@@ -535,13 +533,13 @@ function About() {
   Science at the Technical University of Munich (TUM), with a strong focus on
   computer graphics and real-time rendering.
 </p>
-
+      <div className= "gap-3 py-3">
       <Link
         to="/personal"
-        className="mt-8 inline-flex rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 hover:border-white/40"
-      >
-        Meet me
+       className="rounded-2xl gap-3 border border-white/20 bg-white text-black px-5 py-3 text-sm font-medium hover:bg-zinc-200 inline-flex items-center transition-colors">
+        Read about my personal information
       </Link>
+      </div>
     </div>
 
     <div className="md:col-span-6 md:pl-8">

@@ -362,15 +362,19 @@ export const projects: Project[] = [
     category: "academic",
     body:
       "This project is part of a research-focused virtual reality experiment developed at the Technical University of Munich. " +
-      "The goal was to investigate whether sensitive personal information—such as age, gender, ethnicity, or body weight—can be inferred from eye tracking data alone. " +
-      "We built a Unity-based XR application featuring several interactive task rooms, each designed to elicit distinct gaze and behavioral patterns while participants performed simple tasks in VR.\n\n" +
-      "Sixty-nine participants completed the study using the Varjo XR-3 headset with integrated 200 Hz eye tracking. " +
-      "Each room targeted a specific attribute: a gender-based object ranking task, an age-based memory reconstruction task, an ethnicity-based NPC interaction scene, and a food preference task related to BMI. " +
-      "Statistical analysis confirmed measurable correlations between gaze behavior and personal attributes, demonstrating the privacy risks of future XR systems.\n\n" +
-      "The experiment also integrated AI-driven NPCs powered by the OpenAI API, Amazon Polly for speech synthesis, and Ready Player Me avatars for realistic diversity. " +
-      "Python scripts were used for data analysis (Mann–Whitney U tests, regression models, and visualization). " +
-      "This project highlights both the scientific potential and the privacy challenges of eye tracking in modern immersive environments.",
-    links: [
+"Prior work on privacy and eye tracking has typically focused on inferring a single personal attribute—such as gender—using highly controlled stimuli and narrowly designed experimental setups. " +
+"In contrast, the goal of this project was to investigate whether a broader range of sensitive personal information—such as age, gender, ethnicity, or body weight—can be inferred from eye tracking data alone during simple, natural interactions in an immersive VR environment. " +
+"We built a Unity-based XR application featuring several interactive task rooms, each designed to elicit distinct gaze and behavioral patterns while participants performed uncomplicated tasks in VR.\n\n" +
+
+"Sixty-nine participants completed the study using the Varjo XR-3 headset with integrated 200 Hz eye tracking. " +
+"Each room targeted a specific attribute: a gender-based object ranking task, an age-based memory reconstruction task, an ethnicity-based NPC interaction scene, and a food preference task related to BMI. " +
+"Despite the simplicity of the tasks and the absence of explicitly diagnostic stimuli, statistical analysis confirmed measurable correlations between gaze behavior and multiple personal attributes with high confidence, demonstrating the privacy risks of future XR systems.\n\n" +
+
+"The experiment also integrated AI-driven NPCs powered by the OpenAI API, Amazon Polly for speech synthesis, and Ready Player Me avatars for realistic diversity. " +
+"We also investigated whether we can infer sensitive data based on the speech protocol between the participants and the LLM NPCs."+
+"Python scripts were used for data analysis (Mann–Whitney U tests, regression models, and visualization). " +
+"This project highlights both the scientific potential and the privacy challenges of eye tracking in modern immersive environments."
+,links:[
       { label: "📄 Report", href: "https://marinaweber.me/privacyReport.pdf" },
       { label: "📈 Analysis Scripts", href: "https://github.com/marina1745/idp_analysis_scripts/tree/master" },
     ],
@@ -395,14 +399,19 @@ export const projects: Project[] = [
     category: "academic",
     body:
       "The 'Patient Information System' was developed as part of my diploma thesis at the Higher Technical College of Kaindorf in collaboration with BOOM Software AG. " +
-      "The project aimed to create a prototype that enables users to perform a self-assessment of their symptoms and receive recommendations for the most suitable type of doctor. " +
-      "By answering a series of guided questions, patients receive a preliminary diagnosis and a list of nearby specialists capable of treating their condition.\n\n" +
-      "The system was implemented using the BORA enterprise framework, C#, and WPF for the user interface, with Microsoft SQL Server for persistent data storage. " +
-      "It integrates Google Maps for navigation, allowing patients to view the fastest route to the selected doctor. " +
-      "The application also supports doctor-side functionality: doctors can be notified about incoming patients and access symptom data before their arrival, helping to reduce examination time.\n\n" +
-      "My main responsibilities included project management, data collection on illnesses, and the development of the self-diagnosis algorithm. " +
-      "This project strengthened my understanding of object-oriented design, database systems, and real-world software deployment within a medical context.",
-    links: [
+"The project was motivated by the increasing strain on Austria’s healthcare system, where hospital emergency departments are frequently overburdened by patients seeking care for minor or non-urgent conditions. " +
+"The goal was to explore whether a digital self-assessment tool could help guide patients toward appropriate medical care and reduce unnecessary emergency room visits. " +
+"The resulting prototype enables users to perform a symptom-based self-assessment and receive recommendations for the most suitable type of doctor. " +
+"By answering a series of guided questions, patients obtain a preliminary diagnosis and a list of nearby specialists capable of treating their condition.\n\n" +
+
+"The system was implemented using the BORA enterprise framework, C#, and WPF for the user interface, with Microsoft SQL Server for persistent data storage. " +
+"It integrates Google Maps for navigation, allowing patients to view the fastest route to the selected doctor. " +
+"The application also supports doctor-side functionality: doctors can be notified about incoming patients and access symptom data prior to patient arrival, helping to streamline examination and triage processes.\n\n" +
+
+"My main responsibilities included project management, medical data collection on illnesses, and the development of the self-diagnosis algorithm. " +
+"This project strengthened my understanding of object-oriented software design, database systems, and the challenges of deploying decision-support systems in real-world medical contexts."
+,
+ links: [
       { label: "📄 Full Thesis (PDF)", href: "/patienteninformationssystem.pdf" },
     ],
   },
@@ -417,11 +426,12 @@ export const projects: Project[] = [
     tags: ["C#", "Unity", "Procedural Generation", "Graph Theory", "Spatial Partitioning"],
     category: "academic",
     body:
-      "My Bachelor's thesis focused on developing a formalized model for representing and partitioning game worlds through hierarchical graph structures. " +
-      "The system introduces the concept of *spatial integrity*, ensuring logical coherence between procedurally generated regions such as forests, deserts, and mountains. " +
-      "Terrain was segmented using Voronoi-based partitioning from designer-defined seed points, producing naturally connected biomes that preserve spatial hierarchy and continuity. " +
-      "The project also included custom Unity Editor tooling for region definition, editing and visualization." +
-      "The result is a foundational framework for adaptive level design and world-building tools in modern game engines.",
+      "My Bachelor's thesis investigated structured representations for game worlds using hierarchical graph models. " +
+"The work introduced the concept of *spatial integrity* to formalize logical coherence between procedurally generated regions such as forests, deserts, and mountains. " +
+"World layouts were generated via Voronoi-based partitioning from designer-defined seed points, enabling the construction of naturally connected biomes while preserving spatial hierarchy and continuity. " +
+"In addition to the underlying model, the project included custom Unity Editor tooling for region definition, visualization, and iterative design control. " +
+"The resulting framework provides a foundation for adaptive level design and scalable world-building pipelines in modern game engines."
+,
     media: [
       // Add an image later if you have one: I("bachelor_thesis.png", "Thesis – Diagram"),
       I("terrain1.png", "Procedural Terrain"),
@@ -430,21 +440,18 @@ export const projects: Project[] = [
     ],
   },
 
-   // -------------------------------------------------------------------------------
-  // Bachelor Thesis — Integrity of Space
-  // -------------------------------------------------------------------------------
- /* {
+  {
     slug: "master_thesis",
     title: "Master Thesis",
-    summary: "TODO",
+    summary: "Master Thesis",
     tags: ["TODO"],
     category: "academic",
     body:
-      "TODO",
+      "Work in progress",
     media: [
       // Add an image later if you have one: I("bachelor_thesis.png", "Thesis – Diagram"),
     ],
-  },*/
+  },
 
   // -------------------------------------------------------------------------------
   // Terrain Rendering Project
