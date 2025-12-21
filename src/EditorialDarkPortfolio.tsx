@@ -166,38 +166,103 @@ function Hero() {
 }
 type Slide = { meta: PictureMeta; tiny: string; alt: string };
 type Props = { images: Slide[] };
-function DeferredCarousel({images}:Props) {
-  const ref = useRef<HTMLDivElement|null>(null);
-  const [show, setShow] = useState(false);
-   
+
+
+
+function slideUrl(s: any): string | null {
+  // supports your ?imagetools&as=picture shape OR meta shape
+  return s?.meta?.img?.src ?? s?.meta?.src ?? null;
+}
+
+function preloadOne(url: string) {
+  return new Promise<void>((resolve) => {
+    const img = new Image();
+    img.decoding = "async";
+    img.onload = () => resolve();
+    img.onerror = () => resolve(); // don't block forever on errors
+    img.src = url;
+  });
+}
+
+/** Preload a list; optionally limit concurrency */
+async function preloadMany(urls: string[], concurrency = 3) {
+  let i = 0;
+
+  async function worker() {
+    while (i < urls.length) {
+      const cur = urls[i++];
+      await preloadOne(cur);
+    }
+  }
+
+  const workers = Array.from({ length: Math.min(concurrency, urls.length) }, worker);
+  await Promise.all(workers);
+}
+
+function DeferredCarousel({ images }: Props) {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  const [nearViewport, setNearViewport] = useState(false);
+  const [initialReady, setInitialReady] = useState(false);
+
   useEffect(() => {
     const el = ref.current!;
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        setShow(true);
-        io.disconnect();
-      }
-    }, { rootMargin: '600px' });
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setNearViewport(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "600px" }
+    );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!nearViewport || !images?.length) return;
+
+    // 1) warm up the lazy component module (so it’s ready when we render)
+    import("./components/AestheticCarousel");
+
+    // 2) preload first 3 (block carousel until done)
+    const first = images.slice(0, 3).map(slideUrl).filter(Boolean) as string[];
+
+    // 3) preload the rest in the background after first 3
+    const rest = images.slice(3).map(slideUrl).filter(Boolean) as string[];
+
+    let cancelled = false;
+
+    (async () => {
+      // Preload first 3 ASAP (higher concurrency is fine here)
+      await preloadMany(first, 3);
+      if (cancelled) return;
+      setInitialReady(true);
+
+      // Background preload the remaining (lower concurrency so it doesn't hog)
+      // fire-and-forget; no need to await
+      preloadMany(rest, 2);
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [nearViewport, images]);
+
   return (
     <div ref={ref} className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <Suspense fallback={<CarouselSkeleton />}>
-        {show ? (
-          <AestheticCarousel
-            // pass fully-described images to your carousel
-            images={images}
-            aspect={36/9}
-            innerPad={14}
-            tilePct={70}
-          />
-        ) : <CarouselSkeleton />}
+        {nearViewport && initialReady ? (
+          <AestheticCarousel images={images} aspect={36 / 9} innerPad={14} tilePct={70} />
+        ) : (
+          <CarouselSkeleton />
+        )}
       </Suspense>
     </div>
   );
 }
+
 
 function CarouselSkeleton() {
   return (
