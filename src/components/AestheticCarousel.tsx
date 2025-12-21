@@ -26,7 +26,13 @@ type PictureMeta =
   | { img: { src: string; srcset?: string }; sources?: { avif?: string; webp?: string; jpeg?: string } } // as=picture
   | { src: string; srcset?: string }; // as=meta
 
-type Slide = { meta: PictureMeta; tiny: string; alt: string };
+type Slide = {
+  meta: PictureMeta;
+  tiny: string;
+  alt: string;
+  overlayText?: string;
+};
+
 
 type Props = {
   images: Slide[];
@@ -130,11 +136,14 @@ export default function AestheticCarousel({
             onAnimationComplete={() => setAnimating(false)}
           >
            {/* CENTER */}
+{/* CENTER */}
 <SlidePicture
   slide={slides[1]}
   style={{ width: centerWidth }}
-  className="absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2 rounded-xl object-cover z-[5]"
+  isCenter
+  className="absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2 rounded-xl z-[5]"
 />
+
 
 {/* LEFT */}
 <SlidePicture
@@ -176,8 +185,19 @@ export default function AestheticCarousel({
 
 
 function SlidePicture({
-  slide, className, style, inert,
-}: { slide: Slide; className?: string; style?: React.CSSProperties; inert?: boolean }) {
+  slide,
+  className,
+  style,
+  inert,
+  isCenter = false,
+}: {
+  slide: Slide;
+  className?: string;
+  style?: React.CSSProperties;
+  inert?: boolean;
+  isCenter?: boolean;
+}) {
+
   const { meta, tiny, alt } = slide;
 
   // Be robust at runtime: try picture shape, then meta shape
@@ -189,28 +209,52 @@ function SlidePicture({
 
   const sizes = `(min-width:1024px) ${Number((style as any)?.["--tilePct"] ?? 60)}vw, 95vw`;
 
-  return (
-    <div
-      style={{
-        ...style,
-        backgroundImage: `url('${tiny}')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-      className={className}
-      {...(inert ? { "aria-hidden": true } : {})}
-    >
-      <img
-        src={imgSrc}
-        srcSet={imgSrcset}
-        sizes={sizes}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        className="h-full w-full object-cover rounded-xl"
-      />
-    </div>
-  );
+ return (
+  <div
+    style={{
+      ...style,
+      backgroundImage: `url('${tiny}')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+    className={[
+      className,
+      isCenter ? "group cursor-pointer" : "",
+    ].join(" ")}
+    {...(inert ? { "aria-hidden": true } : {})}
+  >
+    {/* Image */}
+    <img
+      src={imgSrc}
+      srcSet={imgSrcset}
+      sizes={sizes}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      className="h-full w-full object-cover rounded-xl transition duration-300 group-hover:brightness-50"
+    />
+
+    {/* Overlay (center only) */}
+    {isCenter && slide.overlayText && (
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-xl px-4">
+  <span
+    className="
+      w-[80%]
+      text-center
+      text-white text-lg md:text-xl font-medium tracking-wide
+      opacity-0 group-hover:opacity-100
+      transition-opacity duration-300
+      drop-shadow-lg
+    "
+  >
+          {slide.overlayText}
+        </span>
+      </div>
+    )}
+  </div>
+);
+
+  
 }
 
 

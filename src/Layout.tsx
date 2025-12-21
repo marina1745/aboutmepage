@@ -21,7 +21,7 @@ function Footer() {
                     {"\u00A9"} {new Date().getFullYear()} Marina Weber
                 </p>
                 <div className="flex gap-6 text-sm text-zinc-400">
-                    {/* HashRouter links – change to BrowserRouter <Link to="/impressum"> if you switched */}
+                    {/* HashRouter links ï¿½ change to BrowserRouter <Link to="/impressum"> if you switched */}
                     <Link to="/impressum" className="hover:text-zinc-200">Legal Notice</Link>
                     <Link to="/privacy" className="hover:text-zinc-200">Privacy Policy</Link>
                 </div>
@@ -68,8 +68,10 @@ function TopBar() {
                 {showMenu &&
                     <nav className="hidden gap-7 text-sm md:flex">
                         {/* Use absolute hash links so they work from subpages too */}
-                        {makeLink("work", "Work")}
-                        {makeLink("writing", "Academic papers")}
+                        
+                        {makeLink("writing", "Theses & Research")}
+                        {makeLink("interests", "Interests")}
+                        {makeLink("work", "Games & Other Projects")}
                         {makeLink("about", "About")}
                         {makeLink("contact", "Contact")}
                     </nav>

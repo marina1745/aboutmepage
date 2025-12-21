@@ -267,6 +267,35 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/marina1745/GamePhysics_Clone",
   },
+   {
+  slug: "renderproject",
+  title: "Terrain Rendering Project",
+  summary: "DirectX 11 project showcasing procedural terrain rendering",
+  tags: [
+    "C++",
+    "DirectX 11",
+    "DXUT",
+    "Procedural Generation",
+    "Shader Programming",
+    "HLSL",
+    "Post-Processing",
+    "Particle Systems"
+  ],
+  category: "non-game",
+  body:
+    "In this project, I implemented a real-time terrain rendering framework from scratch using DirectX 11. "
+    + "The system procedurally generates large-scale landscapes via a diamond-square algorithm and renders them with dynamic lighting, texture blending, and atmospheric effects. "
+    + "The rendering pipeline features custom HLSL shaders for terrain shading, normal-based lighting, and multi-texture blending, alongside GPU-side vertex and index buffer generation optimized for large terrains. "
+    + "To enhance visual fidelity, I integrated a post-processing pipeline including full-screen effects such as tone mapping and color grading, implemented as screen-space passes. "
+    + "Additionally, the project includes a billboard-based particle system used for effects such as fog, dust, and environmental ambience, rendered efficiently using camera-facing quads. "
+    + "The framework supports real-time camera navigation and demonstrates the complete workflow from procedural data generation (heightmaps, colormaps, normal maps) to GPU-accelerated rendering, shader management, and post-processing.",
+  media: [
+    I("rendergame.png", "Terrain Rendering – Screenshot"),
+  ],
+  github: "https://github.com/marina1745/ged_upload",
+},
+
+
 
   // -------------------------------------------------------------------------------
   // Anthem Trailer – Foley
@@ -391,10 +420,13 @@ export const projects: Project[] = [
       "My Bachelor's thesis focused on developing a formalized model for representing and partitioning game worlds through hierarchical graph structures. " +
       "The system introduces the concept of *spatial integrity*, ensuring logical coherence between procedurally generated regions such as forests, deserts, and mountains. " +
       "Terrain was segmented using Voronoi-based partitioning from designer-defined seed points, producing naturally connected biomes that preserve spatial hierarchy and continuity. " +
-      "The project also included custom Unity Editor tooling for region definition, visualization, and rapid iteration of procedural world layouts. " +
+      "The project also included custom Unity Editor tooling for region definition, editing and visualization." +
       "The result is a foundational framework for adaptive level design and world-building tools in modern game engines.",
     media: [
       // Add an image later if you have one: I("bachelor_thesis.png", "Thesis – Diagram"),
+      I("terrain1.png", "Procedural Terrain"),
+      I("voronoiedit.png", "Voronoi Cells Edit"),
+      
     ],
   },
 
@@ -417,22 +449,7 @@ export const projects: Project[] = [
   // -------------------------------------------------------------------------------
   // Terrain Rendering Project
   // -------------------------------------------------------------------------------
-  {
-    slug: "renderproject",
-    title: "Terrain Rendering Project",
-    summary: "Experiment that visualizes procedural terrain generation using DirectX 11",
-    tags: ["C++", "DirectX 11", "DXUT", "Procedural Generation", "Shader Programming", "HLSL"],
-    category: "non-game",
-    body:
-      "In this project, I implemented a terrain rendering framework from scratch using DirectX 11. The system procedurally generates realistic landscapes via a diamond-square algorithm and renders them with dynamic lighting and texturing. " +
-      "The pipeline includes a custom shader for lighting and texture blending, vertex and index buffer generation for large terrains, and real-time camera navigation. " +
-      "The project showcases the complete workflow from data generation (heightmap, colormap, and normal map creation) to GPU-accelerated rendering and shader management.",
-    media: [
-      I("rendergame.png", "Terrain Rendering – Screenshot"),
-    ],
-    github: "https://github.com/marina1745/ged_upload",
-  },
-
+ 
   // -------------------------------------------------------------------------------
   // Birthday Paradox
   // -------------------------------------------------------------------------------

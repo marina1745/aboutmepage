@@ -37,12 +37,12 @@ import p6Tiny from './assets/holidaypics/6.jpeg?imagetools&w=24&as=base64';
 
 
 const pics = [
-  { meta: pic1, tiny: p1Tiny, alt: "Vienna light show" },
-  { meta: pic2, tiny: p2Tiny, alt: "Cologne Dome" },
-  { meta: pic3, tiny: p3Tiny , alt: "Hokkaido"},
-  { meta: pic4, tiny: p4Tiny, alt: "shirakawa-go" },
-  { meta: pic5, tiny: p5Tiny, alt: "Hongkong" },
-  { meta: pic6, tiny: p6Tiny, alt: "Singapore" },
+  { meta: pic1, tiny: p1Tiny, alt: "Vienna light show", overlayText:"Colored beams interacting with fog, bark, and ground, revealing the challenge of volumetric scattering and color propagation in real time." },
+  { meta: pic2, tiny: p2Tiny, alt: "Cologne Dome", overlayText:"Stained glass transforms sunlight into soft, indirect illumination" },
+  { meta: pic3, tiny: p3Tiny , alt: "Hokkaido", overlayText:"Tiny light sources define the entire mood: Specular reflections, subtle ripples, and low-light exposure all need to remain readable without noise or flicker"},
+  { meta: pic4, tiny: p4Tiny, alt: "shirakawa-go",overlayText:"Snow appears is a complex topic in rendering: High albedo, soft shadows, and sky-tinted bounce light expose the limits of standard shading models in real-time rendering"},
+  { meta: pic5, tiny: p5Tiny, alt: "Hongkong", overlayText: "The neon lights tint entire buildings and streets, challenging real-time pipelines to approximate color bleeding, emissive materials, and lens response."},
+  { meta: pic6, tiny: p6Tiny, alt: "Singapore", overlayText:"City lights stretch across water and atmosphere, demanding stable real-time reflections, HDR exposure control, and believable depth through light." },
 ];
 
 
@@ -59,8 +59,9 @@ export default function EditorialDarkPortfolio() {
             <ReadingProgress />
             <main>      
                 <Hero />
-                <Work />
                 <Writing />
+                <Interests/>
+                <Work />
                 <About />
                 <Contact />
             </main>
@@ -92,6 +93,7 @@ function ReadingProgress() {
         </div>
     );
 }
+
 
 
 function Hero() {
@@ -126,7 +128,7 @@ function Hero() {
       transition={{ duration: 0.7 }}
       className="md:col-span-7 font-serif text-5xl leading-[1.05] tracking-tight md:text-7xl"
     >
-      Games Engineer turned Visual Computation Researcher, Pretty Chill Girl
+      Games Engineer turned Computer Graphics Researcher at TUM
     </motion.h1>
 
     <motion.div
@@ -135,15 +137,19 @@ function Hero() {
       transition={{ duration: 0.7, delay: 0.1 }}
       className="md:col-span-5 md:pl-8"
     >
-      <p className="max-w-xl text-zinc-300 md:text-lg ">
-     I build the technologies that shape the next generation of games - from neural rendering to XR interaction. I'm obsessed with making virtual worlds look and feel alive: Beautifully rendered characters, expressive physics, and systems that push visual computing forward. My work bridges engineering and research to turn impossible scenes into real-time reality.
-     </p>
-
-      <div className="mt-6 flex flex-wrap gap-3">
+      <p className="max-w-xl text-zinc-300 md:text-lg text-balance">
+    I am fascinated by how light, materials, and geometry can be approximated under
+  real-time constraints. My work explores physically based rendering, neural
+  representations, and high-fidelity lighting with the goal of making complex
+  visual phenomena interactive, stable, and controllable.
+  </p>
+     <div className="mt-6 flex flex-wrap gap-3">
+      {/*
         <span className="rounded-2xl border border-white/20 bg-white text-black px-5 py-3 text-sm font-medium hover:bg-zinc-200 inline-flex items-center transition-colors">
-          {makeLink("work", "See Selected Work")}
+          makeLink("work", "See Selected Work")
           <ArrowUpRight className="ml-1 inline h-4 w-4" />
         </span>
+        */}
         <Link to="/personal" className="rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 hover:border-white/40 inline-flex">
           Meet me
         </Link>
@@ -153,6 +159,7 @@ function Hero() {
 
   <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
     <DeferredCarousel images={pics} />
+    <p className="mt-2 text-sm text-zinc-400 text-center">Personal explorations of light, color, and atmosphere in the real world that inform my interest in real-time rendering and appearance modeling (Hover for more info)</p>
   </div>
 </section>
     )
@@ -200,8 +207,10 @@ function CarouselSkeleton() {
 
 
 function Work() {
+
+   
     const chosen = [
-        "privacy_vr", "campus_wars", "sneaky_sneaky"
+        "sneaky_sneaky", "renderproject", "escape_ancient_china"
     ];
     const filtered = projects.filter(p => chosen.includes(p.slug));
 
@@ -209,12 +218,12 @@ function Work() {
         <section id="work" className="border-t border-white/10">
             <div className="mx-auto max-w-6xl px-5 py-20">
                 <div className="mb-10 flex items-end justify-between">
-                    <h2 className="font-serif text-4xl md:text-5xl">Selected Work</h2>
-                    <Link to="/archive?type=game"  className="text-sm text-zinc-400 hover:text-zinc-200">
-                        Archive →
-                    </Link>
+                    <h2 className="font-serif text-4xl md:text-5xl">Games & Other Projects</h2> 
+                   
+                    
                 </div>
 
+                 
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                     {filtered.map(p => (
                         <Link
@@ -243,6 +252,23 @@ function Work() {
                         </Link>
                     ))}
                 </div>
+                     <div className="mt-6 flex flex-wrap gap-3">
+                    <p>
+                      Over the years, I built a portfolio consisting of projects across different disciplines. I worked on multiple game projects with peers, wrote theses at university and school, and worked on other game and game engine related projects. A comprehensive list of my work can be found in the archive.
+                    </p>
+                    </div>
+     <div className="mt-6 flex flex-wrap gap-3">
+
+                    <span className="rounded-2xl border border-white/20 bg-white text-black px-5 py-3 text-sm font-medium hover:bg-zinc-200 inline-flex items-center transition-colors">
+          <Link to="/archive?type=game"  >
+                        Archive
+                    </Link>
+                    
+          <ArrowUpRight className="ml-1 inline h-4 w-4" />
+          
+        </span>
+        </div>
+
             </div>
                                 
             
@@ -268,11 +294,29 @@ function Work() {
 
 function Writing() {
     const posts = [
+      {
+            title: "Real-Time Relighting of Temporally Coherent Cloud-Based Gaussian Volumes ",
+            date: "2026",
+            desc: "Master Thesis",
+            href: "/#/work/ssse",
+        },
+      {
+            title: "Exploring the Impact of LLM-Powered Virtual Spaces on Privacy",
+            date: "2025",
+            desc: "Interdisciplinary Research Project in VR",
+            href: "/#/work/privacy_vr",
+        },
+      {
+            title: "A Functional Gamespace Model – Hierarchical Graphs and Spatial Partitioning Based on the Integrity of Space",
+            date: "2023",
+            desc: "Bachelor Thesis",
+            href: "/#/work/bachelor_thesis_integrity_space",
+        },
         {
-            title: "What eye‑tracking can infer in XR",
-            date: "tbd",
-            desc: "A practical tour of features (fixations, saccades) and the scary bits of inference.",
-            href: "#",
+            title: "Patient  Information System",
+            date: "2019",
+            desc: "Diploma Thesis in corporation with Boom Software AG",
+            href: "/#/work/patient_information_system",
         },
         
     ];
@@ -280,14 +324,16 @@ function Writing() {
     return (
         <section id="writing" className="border-t border-white/10">
             <div className="mx-auto max-w-6xl px-5 py-20">
-                <h2 className="mb-10 font-serif text-4xl md:text-5xl">Academic papers</h2>
-                <h3>tbd</h3>
+                <h2 className="mb-10 font-serif text-4xl md:text-5xl">Theses & Research</h2>
+               
+                
                 <div className="divide-y divide-white/5 border-y border-white/10">
                     {posts.map((p) => (
                         <a
                             key={p.title}
                             href={p.href}
                             className="group block px-2 py-6 transition hover:bg-white/[0.015]"
+                            onClick={() => sessionStorage.setItem("from", "home")}
                         >
                             <div className="flex items-baseline justify-between gap-4">
                                 <h3 className="font-serif text-2xl leading-tight group-hover:underline">
@@ -306,10 +352,95 @@ function Writing() {
     );
 }
 
+function Interests() {
+  const areas = [
+    {
+      title: "Real-Time Lighting & Global Illumination",
+      points: [
+        "How can complex light transport (scattering, indirect light, volumetrics) be approximated stably and efficiently for interactive applications?",
+        "Temporal stability matters: minimizing flicker, noise, and lighting “pops” under dynamic views and illumination.",
+        "Bridging physically based foundations with real-time constraints and artist-friendly controls.",
+      ],
+      keywords: ["Lighting", "GI", "Volumetrics", "Temporal Stability", "PBR"],
+    },
+    {
+  title: "Alternative Representations for Real-Time Graphics",
+  points: [
+    "Exploring representations beyond classical meshes, such as Gaussian primitives, voxel-based models, and neural radiance fields (NeRFs), to represent geometry, appearance, and volume.",
+    "Analyzing tradeoffs in controllability, editability, and relightability when using alternative or learned representations in real-time pipelines.",
+    ],
+  keywords: [
+    "Alternative Representations",
+    "Gaussians",
+    "Voxels",
+    "NeRF",
+    "Hybrid Pipelines",
+    "Real-Time Constraints",
+    "Relighting",
+  ],
+},
+    {
+      title: "Physically Based Appearance Models",
+      points: [
+        "Investigating how materials, surfaces, and volumes remain visually plausible under aggressive performance budgets.",
+        "Appearance modeling beyond “pretty”: consistency across views, exposure, and lighting conditions.",
+        "Where physically-based modeling is essential vs. where learned priors can substitute.",
+      ],
+      keywords: ["BRDF/BSDF", "SVBRDF", "Materials", "Scattering", "Plausibility"],
+    },
+    {
+      title: "High-Fidelity Visuals for Interactive Media",
+      points: [
+        "Translating ideas from offline rendering and film into real-time without sacrificing coherence or control.",
+        "Balancing realism, performance, and usability in production pipelines.",
+        "Building systems that enable “impossible” scenes to feel stable and interactive.",
+      ],
+      keywords: ["Real-Time", "Film → Games", "Performance", "Tooling", "Visual Fidelity"],
+    },
+  ];
+
+  return (
+    <section id="interests" className="border-t border-white/10">
+      <div className="mx-auto max-w-6xl px-5 py-20">
+        <div className="mb-10">
+          <h2 className="font-serif text-4xl md:text-5xl">Interests</h2>
+          <p className="mt-4  text-zinc-300 md:text-lg">
+            I am particularly interested in research questions at the intersection of real-time rendering, physical plausibility, and neural representations.</p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {areas.map((a) => (
+            <div
+              key={a.title}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-white/20 transition"
+            >
+              <h3 className="font-serif text-2xl">{a.title}</h3>
+
+              <ul className="mt-4 space-y-2 text-sm text-zinc-300">
+                {a.points.map((p) => (
+                  <li key={p} className="flex gap-3">
+                    <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+
+             
+            </div>
+          ))}
+        </div>
+
+        
+      </div>
+    </section>
+  );
+}
+
+
 function About() {
     const skills = [
-        "React", "TypeScript", "Unity", "C#", "Varjo XR", "OpenXR", "OpenCV", "SQL", "DirectX","C/C++","Java",
-        "Python", "Pandas", "NumPy", "TensorFlow", "GLSL","Vulkan", "SpringBoot", "Unreal", "CUDA" , "3ds Max",
+        "C/C++","React", "TypeScript", "Unity", "C#", "Varjo XR", "OpenXR", "OpenCV", "SQL", "DirectX","Java",
+        "Python", "Pandas", "NumPy", "HLSL","Vulkan", "SpringBoot", "Unreal", "CUDA" , "3ds Max", "OCaml",
     ];
     return (
         <section id="about" className="border-t border-white/10">
@@ -317,20 +448,29 @@ function About() {
     <div className="md:col-span-6">
       <h2 className="font-serif text-4xl md:text-5xl">About</h2>
       <p className="mt-6 max-w-prose text-zinc-300 md:text-lg">
-        I'm a graphics engineer focused on building the
-        technologies behind next-generation games — from real-time neural
-        rendering to high-fidelity character and world simulation. My background
-        in visual computing, game engine development, and low-level C/C++ gives
-        me the tools to design systems that are fast, expressive, and
-        beautiful.
-      </p>
-      <p className="mt-4 max-w-prose text-zinc-400">
-        I care about how things work on every level — the math, the systems,
-        the behavior. I'm driven by clarity and by creating worlds that feel
-        alive, whether it's a shader, a simulation, or the flow of interaction.
-         Based in Munich, currently finishing my Master's in Computer
-        Science at TUM.
-      </p>
+  I initially came to Munich with the goal of building visually stunning games
+  and interactive experiences. During my studies, however, I realized that
+  creating beautiful results was not enough for me — I wanted to understand
+  why they work, where their limitations lie, and how those limits could be
+  pushed further.
+</p>
+
+<p className="mt-4 max-w-prose text-zinc-300 md:text-lg">
+  During my studies, I realized that producing beautiful results was not enough
+  for me. I became increasingly interested in understanding the underlying
+  technology, where current
+  real-time pipelines break down, and how new rendering and representation
+  techniques could push these limits further. This shift led me toward
+  research-driven work focused on advancing the foundations of real-time
+  graphics.
+</p>
+
+<p className="mt-4 max-w-prose text-zinc-400">
+  I am currently based in Munich and completing my Master’s degree in Computer
+  Science at the Technical University of Munich (TUM), with a strong focus on
+  computer graphics and real-time rendering.
+</p>
+
       <Link
         to="/personal"
         className="mt-8 inline-flex rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 hover:border-white/40"
@@ -341,7 +481,7 @@ function About() {
 
     <div className="md:col-span-6 md:pl-8">
       <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-        <h3 className="font-serif text-2xl">Skills & Tools</h3>
+        <h3 className="font-serif text-2xl">Technical Background</h3>
         <div className="mt-4 flex flex-wrap gap-2">
           {skills.map((s) => (
             <span
@@ -353,25 +493,42 @@ function About() {
           ))}
         </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-4 text-sm text-zinc-300">
-          <div>
-            <p className="text-zinc-400">Currently interested in</p>
-            <ul className="mt-1 list-disc pl-5">
-              <li>Neural & real-time rendering</li>
-              <li>Character simulation (hair, cloth, materials)</li>
-              <li>XR interaction & perceptual systems</li>
-              <li>Procedural worlds & game engine architecture</li>
-            </ul>
-          </div>
-          <div>
-            <p className="text-zinc-400">Highlights</p>
-            <ul className="mt-1 list-disc pl-5">
-              <li>Designed and ran a full XR eye-tracking research study</li>
-              <li>Built multiple game and graphics projects from engine to visuals</li>
-              <li>Specialized in real-time rendering at TUM</li>
-            </ul>
-          </div>
-        </div>
+       <div className="mt-6 grid grid-cols-2 gap-4 text-sm text-zinc-300">
+  <div>
+    <p className="text-zinc-400">Research preparation</p>
+    <ul className="mt-1 list-disc pl-5">
+      <li>
+        Master’s studies focused on real-time rendering, visual computing,
+        and graphics programming
+      </li>
+      <li>
+        Research-driven projects combining theory with hands-on
+        implementation and evaluation
+      </li>
+      <li>
+        Experience designing experimental systems to study visual behavior
+        and perception
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <p className="text-zinc-400">Engineering background</p>
+    <ul className="mt-1 list-disc pl-5">
+      <li>
+        Multiple internships and working student positions during my studies
+      </li>
+      <li>
+        Experience ranging from low-level programming to full-stack development (totally not showing off on this website😉)
+      </li>
+      <li>
+        Comfortable moving between high-level system design and
+        performance-critical implementation
+      </li>
+    </ul>
+  </div>
+</div>
+
       </div>
     </div>
   </div>
@@ -388,7 +545,7 @@ function Contact() {
                     <div className="md:col-span-6 items-center">
                         <h2 className="font-serif text-4xl md:text-5xl">Contact</h2>
                         <p className="mt-6 max-w-prose text-zinc-300 md:text-lg mb-4">
-                            Want to collaborate or chat about XR & graphics? Drop a line.
+                            Want to collaborate or chat about games & graphics? Drop a line.
                         </p>
 
                         <div className="mt-0 flex flex-wrap items-center gap-3">

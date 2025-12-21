@@ -34,21 +34,36 @@ export default function Personal() {
             transition={{ duration: 0.4 }}
             className="md:col-span-8"
           >
-            <h2 className="font-serif text-2xl md:text-3xl">Small girl with big dreams</h2>
-            <p className="mt-3 text-zinc-300 md:text-lg">
-              I grew up in a small Austrian town, surrounded by vineyards, cornfields, and routine.
-              At some point I realized I wanted to see what lay beyond both - so I left, curious to explore the world and understand how it works.
-              Along the way, I moved often, met people from every kind of background, and learned as much about myself as I did about others.
-              Change became my constant, curiosity my rhythm.
-              And ever since the day a four-year-old me first obsessed over Pokemon Stadium 2, technology has stayed the quiet thread running through it all.
-            </p>
+            <h2 className="font-serif text-2xl md:text-3xl">
+              From a small girl with big dreams to an aspiring researcher</h2>
+           <p className="mt-3 text-zinc-300 md:text-lg">
+  I grew up in a small Austrian town, surrounded by vineyards, cornfields, and a
+  sense of familiarity that rarely changed. At some point, I began to feel how
+  much larger the world was than what I knew; and how much there was still to
+  explore, understand, and question.
+  <br />
+  I left driven by curiosity rather than certainty. Moving often and meeting
+  people from many different backgrounds taught me to stay open, adaptable, and
+  attentive to perspectives beyond my own. Change became a constant, curiosity
+  the quiet rhythm underneath it all.
+  <br />
+  Technology was always part of that exploration: First as fascination, later
+  as a way to build, experiment, and make sense of complex interactive worlds.
+  That sense of being early in a much larger journey still shapes how I approach
+  my work today.
+</p>
+
+
+
 
             <Link
               to="/journey"
               className="mt-4 inline-block text-zinc-400 hover:text-zinc-100 underline underline-offset-4 transition"
             >
               Read about my Computer Science journey →
+              
             </Link>
+            
           </motion.div>
 
           <motion.aside
@@ -65,14 +80,14 @@ export default function Personal() {
             />
           </motion.aside>
         </section>
-
+      
         {/* Recent events */}
         <section>
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="font-serif text-2xl md:text-3xl"
+            className="mt-16 font-serif text-2xl md:text-3xl"
           >
             Recent events
           </motion.h2>
@@ -80,7 +95,7 @@ export default function Personal() {
           <div className="mt-8 border-l border-white/10">
             {[
               { year: "NOW", text: "Finishing my Master's, started my master thesis" },
-              { year: "2024", text: "Research project in VR/XR" },
+              { year: "2024-2025", text: "Research project in VR/XR" },
               { year: "2023-2024", text: "Exploring Japan & Asia" },
               { year: "2023", text: "Finished my Games Engineering Bachelor" },
             ].map((i) => (
