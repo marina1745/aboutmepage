@@ -37,9 +37,11 @@ export default function ArchivePage() {
     return (
         <section className="py-8">
             <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-6 flex items-center gap-4">
+                <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+
                     <h1 className="text-3xl font-semibold">Archive</h1>
-                    <div className="ml-auto inline-flex rounded-full bg-zinc-900/60 p-1 ring-1 ring-zinc-800">
+                    <div className="w-full sm:w-auto sm:ml-auto inline-flex rounded-full bg-zinc-900/60 p-1 ring-1 ring-zinc-800">
+
                         <div className="ml-auto inline-flex max-w-full rounded-full bg-zinc-900/60 p-1 ring-1 ring-zinc-800 overflow-x-auto [-webkit-overflow-scrolling:touch]">
   {tabs.map(t => {
     const isActive = t.key === active;
@@ -76,7 +78,7 @@ export default function ArchivePage() {
                         <Link
                             key={p.slug}
                             to={`/work/${p.slug}`}
-                            className="group block rounded-2xl bg-zinc-900/60 ring-1 ring-zinc-800 p-5 hover:bg-zinc-900 hover:ring-zinc-700 transition"
+                            className="flex-1 min-w-0 px-3 py-1 text-xs sm:flex-none sm:w-40 sm:px-4 sm:py-1.5 sm:text-sm rounded-full text-center whitespace-nowrap transition "
                         >
                             <div className="flex items-start justify-between">
                                 <h3 className="text-lg font-medium text-zinc-100">{p.title}</h3>
