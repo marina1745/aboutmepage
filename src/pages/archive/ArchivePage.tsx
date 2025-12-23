@@ -54,9 +54,7 @@ export default function ArchivePage() {
           sessionStorage.setItem("from", "archive");
           sessionStorage.setItem("archiveType", t.key);
         }}
-        className={`shrink-0 whitespace-nowrap rounded-full text-center transition
-          px-3 py-1 text-xs
-          sm:px-4 sm:py-1.5 sm:text-sm sm:w-40
+        className={`flex-1 min-w-0 px-3 py-1 text-xs sm:flex-none sm:w-40 sm:px-4 sm:py-1.5 sm:text-sm rounded-full text-center whitespace-nowrap transition 
           ${isActive
             ? "bg-zinc-100 text-zinc-900"
             : "text-zinc-300 hover:text-white hover:bg-zinc-800/70"
@@ -78,7 +76,7 @@ export default function ArchivePage() {
                         <Link
                             key={p.slug}
                             to={`/work/${p.slug}`}
-                            className="flex-1 min-w-0 px-3 py-1 text-xs sm:flex-none sm:w-40 sm:px-4 sm:py-1.5 sm:text-sm rounded-full text-center whitespace-nowrap transition "
+                            className="group block rounded-2xl bg-zinc-900/60 ring-1 ring-zinc-800 p-5 hover:bg-zinc-900 hover:ring-zinc-700 transition"
                         >
                             <div className="flex items-start justify-between">
                                 <h3 className="text-lg font-medium text-zinc-100">{p.title}</h3>
