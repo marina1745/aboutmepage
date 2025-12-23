@@ -40,27 +40,32 @@ export default function ArchivePage() {
                 <div className="mb-6 flex items-center gap-4">
                     <h1 className="text-3xl font-semibold">Archive</h1>
                     <div className="ml-auto inline-flex rounded-full bg-zinc-900/60 p-1 ring-1 ring-zinc-800">
-                        {tabs.map(t => {
-                            const isActive = t.key === active;
-                            return (
-                                <button
-                                    key={t.key}
-                                    onClick={() => {
-                                        sp.set("type", t.key);
-                                        setSp(sp, { replace: true });
-                                        sessionStorage.setItem("from", "archive");
-                                        sessionStorage.setItem("archiveType", t.key);
-                                    }}
-                                    className={`w-40 px-4 py-1.5 text-sm rounded-full text-center transition ${
-        isActive
+                        <div className="ml-auto inline-flex max-w-full rounded-full bg-zinc-900/60 p-1 ring-1 ring-zinc-800 overflow-x-auto [-webkit-overflow-scrolling:touch]">
+  {tabs.map(t => {
+    const isActive = t.key === active;
+    return (
+      <button
+        key={t.key}
+        onClick={() => {
+          sp.set("type", t.key);
+          setSp(sp, { replace: true });
+          sessionStorage.setItem("from", "archive");
+          sessionStorage.setItem("archiveType", t.key);
+        }}
+        className={`shrink-0 whitespace-nowrap rounded-full text-center transition
+          px-3 py-1 text-xs
+          sm:px-4 sm:py-1.5 sm:text-sm sm:w-40
+          ${isActive
             ? "bg-zinc-100 text-zinc-900"
             : "text-zinc-300 hover:text-white hover:bg-zinc-800/70"
-    }`}
-                                >
-                                    {t.label}
-                                </button>
-                            );
-                        })}
+          }`}
+      >
+        {t.label}
+      </button>
+    );
+  })}
+</div>
+
                     </div>
                 </div>
             </div>

@@ -513,21 +513,9 @@ function About() {
     <div className="md:col-span-6">
       <h2 className="font-serif text-4xl md:text-5xl">About</h2>
       <p className="mt-6 max-w-prose text-zinc-300 md:text-lg">
-  I initially came to Munich with the goal of building visually stunning games
-  and interactive experiences. During my studies, however, I realized that
-  creating beautiful results was not enough for me — I wanted to understand
-  why they work, where their limitations lie, and how those limits could be
-  pushed further.
-</p>
-
-<p className="mt-4 max-w-prose text-zinc-300 md:text-lg">
-  During my studies, I realized that producing beautiful results was not enough
-  for me. I became increasingly interested in understanding the underlying
-  technology, where current
-  real-time pipelines break down, and how new rendering and representation
-  techniques could push these limits further. This shift led me toward
-  research-driven work focused on advancing the foundations of real-time
-  graphics.
+  I initially came to Munich with the ambition of creating visually compelling games and interactive experiences. As my studies progressed, however, I realized that achieving beautiful results alone was not enough for me. I wanted to understand why these visuals work, which assumptions they rely on, and where current real-time pipelines begin to break down.
+</p><p className="mt-6 max-w-prose text-zinc-300 md:text-lg">
+This growing curiosity shifted my focus toward the underlying technology and theory behind rendering systems. I became increasingly interested in how new rendering and representation techniques can push the limits of real-time graphics beyond what is currently possible, leading me toward research-driven work aimed at advancing the foundations of real-time rendering.
 </p>
 
 <p className="mt-4 max-w-prose text-zinc-400">
