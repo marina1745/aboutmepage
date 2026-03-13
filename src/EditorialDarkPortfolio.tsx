@@ -481,9 +481,39 @@ function Interests() {
             interactively.
           </p>
         </div>
+       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {areas.map((a) => (
+            <div
+              key={a.title}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-white/20"
+            >
+              <h3 className="font-serif text-2xl">{a.title}</h3>
+
+              <ul className="mt-4 space-y-2 text-sm text-zinc-300">
+                {a.points.map((p) => (
+                  <li key={p} className="flex gap-3">
+                    <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                {a.keywords.map((k) => (
+                  <span
+                    key={k}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-zinc-300"
+                  >
+                    {k}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-        </section>
-  )
+      </div>
+    </section>
+  );
 }
 
 
