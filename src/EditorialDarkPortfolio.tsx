@@ -151,6 +151,11 @@ function Hero() {
           {makeLink("interests", "Learn about my interests")}
           <ArrowUpRight className="ml-1 inline h-4 w-4" />
         </span>
+        <Link
+        to="/personal"
+      className="rounded-2xl border border-white/20 px-5 py-3 text-sm text-zinc-200 transition hover:-translate-y-0.5 hover:border-white/40">
+      Private page
+      </Link>
         
         
       </div>
@@ -360,7 +365,7 @@ function Work() {
 function Writing() {
     const posts = [
       {
-            title: "Real-Time Relighting of Temporally Coherent Cloud-Based Gaussian Volumes ",
+            title: "Novel-View Synthesis of Dynamic Clouds",
             date: "2026",
             desc: "Master Thesis",
             href: "/#/work/master_thesis",
@@ -420,47 +425,46 @@ function Writing() {
 function Interests() {
   const areas = [
     {
-      title: "Real-Time Lighting & Global Illumination",
+      title: "Real-Time Rendering & Visibility",
       points: [
-        "How can complex light transport (scattering, indirect light, volumetrics) be approximated stably and efficiently for interactive applications?",
-        "Temporal stability matters: minimizing flicker, noise, and lighting “pops” under dynamic views and illumination.",
-        "Bridging physically based foundations with real-time constraints and artist-friendly controls.",
+        "Developing algorithms that enable complex scenes to be rendered interactively while maintaining visual coherence.",
+        "Studying visibility, shadowing, and light transport approximations that remain stable under dynamic viewpoints and lighting.",
+        "Balancing algorithmic efficiency with visual plausibility in real-time graphics systems.",
       ],
-      keywords: ["Lighting", "GI", "Volumetrics", "Temporal Stability", "PBR"],
+      keywords: ["Real-Time Rendering", "Visibility", "Shadows", "Light Transport", "GPU Algorithms"],
     },
     {
-  title: "Alternative Representations for Real-Time Graphics",
-  points: [
-    "Exploring representations beyond classical meshes, such as Gaussian primitives, voxel-based models, and neural radiance fields (NeRFs), to represent geometry, appearance, and volume.",
-    "Analyzing tradeoffs in controllability, editability, and relightability when using alternative or learned representations in real-time pipelines.",
-    ],
-  keywords: [
-    "Alternative Representations",
-    "Gaussians",
-    "Voxels",
-    "NeRF",
-    "Hybrid Pipelines",
-    "Real-Time Constraints",
-    "Relighting",
-  ],
-},
-    {
-      title: "Physically Based Appearance Models",
+      title: "Alternative Scene Representations",
       points: [
-        "Investigating how materials, surfaces, and volumes remain visually plausible under aggressive performance budgets.",
-        "Appearance modeling beyond “pretty”: consistency across views, exposure, and lighting conditions.",
-        "Where physically-based modeling is essential vs. where learned priors can substitute.",
+        "Exploring scene representations beyond classical meshes, such as Gaussian primitives, voxel-based models, and neural radiance fields.",
+        "Understanding tradeoffs between efficiency, editability, and relightability when integrating these representations into real-time pipelines.",
+        "Combining learned and classical representations in hybrid rendering systems.",
       ],
-      keywords: ["BRDF/BSDF", "SVBRDF", "Materials", "Scattering", "Plausibility"],
+      keywords: [
+        "Alternative Representations",
+        "Gaussian Splatting",
+        "Voxels",
+        "Neural Radiance Fields",
+        "Hybrid Rendering",
+      ],
     },
     {
-      title: "High-Fidelity Visuals for Interactive Media",
+      title: "Efficient Rendering Algorithms",
       points: [
-        "Translating ideas from offline rendering and film into real-time without sacrificing coherence or control.",
-        "Balancing realism, performance, and usability in production pipelines.",
-        "Building systems that enable “impossible” scenes to feel stable and interactive.",
+        "Designing rendering techniques that scale to complex geometry, lighting, and volumetric phenomena.",
+        "Investigating GPU-friendly algorithms and data structures for real-time rendering.",
+        "Bridging low-level performance considerations with high-level rendering techniques.",
       ],
-      keywords: ["Real-Time", "Film → Games", "Performance", "Tooling", "Visual Fidelity"],
+      keywords: ["GPU Algorithms", "Acceleration Structures", "Ray Queries", "Performance"],
+    },
+    {
+      title: "High-Fidelity Graphics for Interactive Applications",
+      points: [
+        "Investigating how modern graphics techniques can enable visually rich and stable real-time experiences.",
+        "Translating advances from research rendering into practical interactive systems.",
+        "Supporting applications in games, XR, and simulation.",
+      ],
+      keywords: ["Interactive Graphics", "Games", "XR", "Real-Time Systems", "Visual Fidelity"],
     },
   ];
 
@@ -469,36 +473,17 @@ function Interests() {
       <div className="mx-auto max-w-6xl px-5 py-20">
         <div className="mb-10">
           <h2 className="font-serif text-4xl md:text-5xl">Interests</h2>
-          <p className="mt-4  text-zinc-300 md:text-lg">
-            I am particularly interested in research questions at the intersection of real-time rendering, physical plausibility, and neural representations.</p>
+          <p className="mt-4 text-zinc-300 md:text-lg">
+            My research interests lie in real-time rendering, alternative scene
+            representations, and efficient algorithms for interactive graphics.
+            I am particularly interested in how new representations and GPU
+            techniques can enable visually rich scenes to be rendered
+            interactively.
+          </p>
         </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {areas.map((a) => (
-            <div
-              key={a.title}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-white/20 transition"
-            >
-              <h3 className="font-serif text-2xl">{a.title}</h3>
-
-              <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-                {a.points.map((p) => (
-                  <li key={p} className="flex gap-3">
-                    <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
-
-             
-            </div>
-          ))}
         </div>
-
-        
-      </div>
-    </section>
-  );
+        </section>
+  )
 }
 
 
